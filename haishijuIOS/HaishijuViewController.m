@@ -15,14 +15,14 @@
 
 @implementation HaishijuViewController
 @synthesize tableView,customNavBar,customSearBar;
-@synthesize zfxxViewController,cxcbViewController,gzcbViewController,zfzcxViewController,xccbViewController,cbshViewController,iSMViewController,hccyViewController,nSMViewController,zdgzViewController,nhcyViewController;
+@synthesize zfxxViewController,cxcbViewController,gzcbViewController,zfzcxViewController,xccbViewController,cbshViewController,iSMViewController,hccyViewController,nSMViewController,zdgzViewController,nhcyViewController,aqcxczViewController,jyjhcViewController,hywpjgViewController,cbajyViewController;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    modelArray=[[NSMutableArray alloc] initWithObjects:@"政府信息公开",@"安全诚信船舶名单",@"重点跟踪船舶名单",@"协查船舶名单",@"船舶审核管理",@"实施ISM公司",@"海船船员培训机构查询",@"实施NSM公司",@"重点跟踪公司",@"内河船员培训机构查询", @"执法人员执法证查询",@"“安全诚信船长”名单",@"甲、乙级海船船员服务机构查询",@"海员外派机构查询",@"船舶安检员信息查询", nil];
-    imagesArray=[[NSMutableArray alloc] initWithObjects:@"zfxx",@"aqcxcb",@"zdgzcbmd",@"xccbmd",@"cbsh",@"ssISMgs",@"hccy",@"ssNSMgs",@"zdzz",@"nhcy",@"zfry",@"aqcxcz",@"jyjcy",@"hywp", @"cyckscj",nil];
+    modelArray=[[NSMutableArray alloc] initWithObjects:@"政府信息公开",@"安全诚信船舶名单",@"重点跟踪船舶名单",@"协查船舶名单",@"船舶审核管理",@"实施ISM公司",@"海船船员培训机构查询",@"实施NSM公司",@"重点跟踪公司",@"内河船员培训机构查询",@"“安全诚信船长”名单",@"甲、乙级海船船员服务机构查询",@"海员外派机构查询", @"执法人员执法证查询",@"船舶安检员信息查询", nil];
+    imagesArray=[[NSMutableArray alloc] initWithObjects:@"zfxx",@"aqcxcb",@"zdgzcbmd",@"xccbmd",@"cbsh",@"ssISMgs",@"hccy",@"ssNSMgs",@"zdzz",@"nhcy",@"aqcxcz",@"jyjcy",@"hywp",@"zfry",@"cyckscj",nil];
     self.view.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"mainBG"]];
     self.customNavBar.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"homeNavBar"]];
     self.customSearBar.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"searchBar"]];
@@ -39,6 +39,10 @@
         self.zdgzViewController=[[HaishijuZdgzViewController alloc] initWithNibName:@"HaishijuZdgzViewController_4" bundle:nil];
         self.nhcyViewController=[[HaishijuNhcyViewController alloc] initWithNibName:@"HaishijuNhcyViewController_4" bundle:nil];
         self.zfzcxViewController=[[HaishijuZfzcxViewController alloc] initWithNibName:@"HaishijuZfzcxViewController_4" bundle:nil];
+        self.aqcxczViewController=[[HaishijuAqcxczViewController alloc] initWithNibName:@"HaishijuAqcxczViewController_4" bundle:nil];
+        self.jyjhcViewController=[[HaishijuJyjhcViewController alloc] initWithNibName:@"HaishijuJyjhcViewController_4" bundle:nil];
+        self.hywpjgViewController=[[HaishijuHywpjgViewController alloc] initWithNibName:@"HaishijuHywpjgViewController_4" bundle:nil];
+        self.cbajyViewController=[[HaishijuCbajyViewController alloc] initWithNibName:@"HaishijuCbajyViewController_4" bundle:nil];
 
     }
     else
@@ -54,6 +58,10 @@
         self.zdgzViewController=[[HaishijuZdgzViewController alloc] initWithNibName:@"HaishijuZdgzViewController" bundle:nil];
         self.nhcyViewController=[[HaishijuNhcyViewController alloc] initWithNibName:@"HaishijuNhcyViewController" bundle:nil];
                 self.zfzcxViewController=[[HaishijuZfzcxViewController alloc] initWithNibName:@"HaishijuZfzcxViewController" bundle:nil];
+        self.aqcxczViewController=[[HaishijuAqcxczViewController alloc] initWithNibName:@"HaishijuAqcxczViewController" bundle:nil];
+        self.jyjhcViewController=[[HaishijuJyjhcViewController alloc] initWithNibName:@"HaishijuJyjhcViewController" bundle:nil];
+        self.hywpjgViewController=[[HaishijuHywpjgViewController alloc] initWithNibName:@"HaishijuHywpjgViewController" bundle:nil];
+        self.cbajyViewController=[[HaishijuCbajyViewController alloc] initWithNibName:@"HaishijuCbajyViewController" bundle:nil];
         
     }
     self.navigationController.navigationBarHidden=YES;
@@ -228,28 +236,29 @@
             break;
         case 10:
         {
-            [self.navigationController pushViewController:self.zfzcxViewController animated:YES ];
-
+            [self.navigationController pushViewController:self.aqcxczViewController animated:YES ];
         }
             break;
         case 11:
         {
-            
+            [self.navigationController pushViewController:self.jyjhcViewController animated:YES ];
         }
             break;
         case 12:
         {
-            
+            [self.navigationController pushViewController:self.hywpjgViewController animated:YES ];
         }
             break;
         case 13:
         {
+            [self.navigationController pushViewController:self.zfzcxViewController animated:YES ];
             
         }
             break;
         case 14:
         {
-                    }
+            [self.navigationController pushViewController:self.cbajyViewController animated:YES ];
+        }
             break;
     }
 }

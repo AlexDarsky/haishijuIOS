@@ -19,6 +19,10 @@
 #import "HaishijuZdgzViewController.h"
 #import "HaishijuNhcyViewController.h"
 #import "HaishijuZfxxViewController.h"
+#import "HaishijuAqcxczViewController.h"
+#import "HaishijuJyjhcViewController.h"
+#import "HaishijuHywpjgViewController.h"
+#import "HaishijuCbajyViewController.h"
 
 @interface HaishijuViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 {
@@ -40,4 +44,9 @@
 @property (strong,nonatomic)HaishijuZdgzViewController *zdgzViewController;
 @property (strong,nonatomic)HaishijuNhcyViewController *nhcyViewController;
 @property (strong,nonatomic)HaishijuZfxxViewController *zfxxViewController;
+@property (strong,nonatomic)HaishijuAqcxczViewController *aqcxczViewController;
+@property (strong,nonatomic)HaishijuJyjhcViewController *jyjhcViewController;
+@property (strong,nonatomic)HaishijuHywpjgViewController *hywpjgViewController;
+@property (strong,nonatomic)HaishijuCbajyViewController *cbajyViewController;
+
 @end

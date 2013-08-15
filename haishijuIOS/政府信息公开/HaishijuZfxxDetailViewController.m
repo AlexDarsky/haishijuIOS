@@ -38,12 +38,12 @@ static HaishijuZfxxDetailViewController *shareHaishijuZfxxDetailViewController =
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.navigationController.navigationBarHidden=YES;
+    [self.detailTitle setAdjustsFontSizeToFitWidth:YES];
     self.customNavBar.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"homeNavBar"]];
     self.view.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"listViewBG"]];
 }
 -(void)loadInfoBySendRequest:(NSString*)chuanID
 {
-    HaishijuServerHelper *serverHelper=[HaishijuServerHelper shareHaishijuServerHelper];
     //修改url中的type的参数
     NSString *urlString=[NSString stringWithFormat:@"http://www.gdmsa.gov.cn/android/getDataDetail.asp?type=xxgk&ID=%@",chuanID];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
@@ -57,7 +57,7 @@ static HaishijuZfxxDetailViewController *shareHaishijuZfxxDetailViewController =
     NSLog(@"%d",titleRange.location);
     NSRange contentRange=[jsonString rangeOfString:@"Content"];
     NSLog(@"%d",contentRange.location);
-    NSString *titleString=[jsonString substringWithRange:NSMakeRange(titleRange.location+10, contentRange.location-29)];
+    NSString *titleString=[jsonString substringWithRange:NSMakeRange(titleRange.location+8, contentRange.location-27)];
     NSLog(@"%@",titleString);
     NSString *contentString=[jsonString substringFromIndex:contentRange.location+10];
     contentString=[contentString substringWithRange:NSMakeRange(0, contentString.length-4)];
