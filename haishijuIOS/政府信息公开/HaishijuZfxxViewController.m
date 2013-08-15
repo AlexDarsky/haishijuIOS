@@ -1,0 +1,332 @@
+//
+//  HaishijuCxcbViewController.m
+//  haishijuIOS
+//
+//  Created by Darsky on 13-8-1.
+//  Copyright (c) 2013年 Darsky. All rights reserved.
+//
+
+#import "HaishijuZfxxViewController.h"
+#import "HaishijuServerHelper.h"
+#import <QuartzCore/QuartzCore.h>
+#import "HaishijuZfxxDetailViewController.h"
+#import "HaishijuZfxxChildViewController.h"
+@interface HaishijuZfxxViewController ()
+
+@end
+
+@implementation HaishijuZfxxViewController
+@synthesize tableView,customNavBar,alert;
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    // Do any additional setup after loading the view from its nib.
+    objectsArray=[[NSMutableArray alloc] initWithObjects:@"政府信息公开指南",@"政府信息公开目录",@"信息公开年报",@"信息公开申请", nil];
+    muluArray=[[NSMutableArray alloc] initWithObjects:@"组织机构",@"海事行政处罚",@"海事项目",@"干部任免",@"人事管理",@"年度计划",@"海事行政许可",@"听证与复议",@"海事规费", nil];
+
+    //根据接口文档改写一下数组路面的objects，以下分别对应文档中的中文说明和字段
+    self.navigationController.navigationBarHidden=YES;
+    self.customNavBar.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"homeNavBar"]];
+    self.view.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"listViewBG"]];
+}
+-(void)viewWillAppear:(BOOL)animated
+{
+    self.navigationController.navigationBarHidden=YES;
+}
+- (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    int number;
+    switch (section) {
+        case 0:
+        {
+            number=1;
+        }
+            break;
+        case 1:
+        {
+            number=10;
+        }
+            break;
+        case 2:
+        {
+            number=1;
+        }
+            break;
+        case 3:
+        {
+            number=1;
+        }
+            break;
+    }
+    return number;
+}
+- (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return [objectsArray count];
+}
+
+-(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 50;
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // static NSString *cellIdentifier = @"MyCell";
+    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
+    
+    // cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier]
+    [cell setSelectionStyle:UITableViewCellSelectionStyleGray];
+    switch (indexPath.section) {
+        case 0:
+        {
+            UIFont *font = [UIFont fontWithName:@"Arial" size:16];
+            UILabel *firstTitle=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, cell.frame.size.width,  cell.frame.size.height)];
+            firstTitle.backgroundColor=[UIColor blueColor];
+            firstTitle.font=font;
+            firstTitle.text=[NSString stringWithFormat:@"  %@",[objectsArray objectAtIndex:indexPath.section]];
+            [cell addSubview:firstTitle];
+
+        }
+            break;
+        case 1:
+        {
+            switch (indexPath.row) {
+                case 0:
+                {
+                    UIFont *font = [UIFont fontWithName:@"Arial" size:16];
+                    UILabel *firstTitle=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, cell.frame.size.width,  cell.frame.size.height)];
+                    firstTitle.backgroundColor=[UIColor blueColor];
+                    firstTitle.font=font;
+                    firstTitle.text=[NSString stringWithFormat:@"  %@",[objectsArray objectAtIndex:indexPath.section]];
+                    [cell addSubview:firstTitle];
+
+                }
+                    break;
+                case 1:
+                {
+                    UILabel *firstTitle=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, cell.frame.size.width,  cell.frame.size.height)];
+                    firstTitle.backgroundColor=[UIColor clearColor];
+                    firstTitle.font= [UIFont fontWithName:@"Arial" size:14];
+                    firstTitle.text=[NSString stringWithFormat:@"        %@",[muluArray objectAtIndex:indexPath.row-1]];
+                    [cell addSubview:firstTitle];
+                }
+                    break;
+                case 2:
+                {
+                    UILabel *firstTitle=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, cell.frame.size.width,  cell.frame.size.height)];
+                    firstTitle.backgroundColor=[UIColor clearColor];
+                    firstTitle.font= [UIFont fontWithName:@"Arial" size:14];
+                    firstTitle.text=[NSString stringWithFormat:@"        %@",[muluArray objectAtIndex:indexPath.row-1]];
+                    [cell addSubview:firstTitle];
+                }
+                    break;
+                case 3:
+                {
+                    UILabel *firstTitle=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, cell.frame.size.width,  cell.frame.size.height)];
+                    firstTitle.backgroundColor=[UIColor clearColor];
+                    firstTitle.font= [UIFont fontWithName:@"Arial" size:14];
+                    firstTitle.text=[NSString stringWithFormat:@"        %@",[muluArray objectAtIndex:indexPath.row-1]];
+                    [cell addSubview:firstTitle];
+                }
+                    break;
+                case 4:
+                {
+                    UILabel *firstTitle=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, cell.frame.size.width,  cell.frame.size.height)];
+                    firstTitle.backgroundColor=[UIColor clearColor];
+                    firstTitle.font= [UIFont fontWithName:@"Arial" size:14];
+                    firstTitle.text=[NSString stringWithFormat:@"        %@",[muluArray objectAtIndex:indexPath.row-1]];
+                    [cell addSubview:firstTitle];
+                }
+                    break;
+                case 5:
+                {
+                    UILabel *firstTitle=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, cell.frame.size.width,  cell.frame.size.height)];
+                    firstTitle.backgroundColor=[UIColor clearColor];
+                    firstTitle.font= [UIFont fontWithName:@"Arial" size:14];
+                    firstTitle.text=[NSString stringWithFormat:@"        %@",[muluArray objectAtIndex:indexPath.row-1]];
+                    [cell addSubview:firstTitle];
+                }
+                    break;
+                case 6:
+                {
+                    UILabel *firstTitle=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, cell.frame.size.width,  cell.frame.size.height)];
+                    firstTitle.backgroundColor=[UIColor clearColor];
+                    firstTitle.font= [UIFont fontWithName:@"Arial" size:14];
+                    firstTitle.text=[NSString stringWithFormat:@"        %@",[muluArray objectAtIndex:indexPath.row-1]];
+                    [cell addSubview:firstTitle];
+                }
+                    break;
+                case 7:
+                {
+                    UILabel *firstTitle=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, cell.frame.size.width,  cell.frame.size.height)];
+                    firstTitle.backgroundColor=[UIColor clearColor];
+                    firstTitle.font= [UIFont fontWithName:@"Arial" size:14];
+                    firstTitle.text=[NSString stringWithFormat:@"        %@",[muluArray objectAtIndex:indexPath.row-1]];
+                    [cell addSubview:firstTitle];
+                }
+                    break;
+                case 8:
+                {
+                    UILabel *firstTitle=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, cell.frame.size.width,  cell.frame.size.height)];
+                    firstTitle.backgroundColor=[UIColor clearColor];
+                    firstTitle.font= [UIFont fontWithName:@"Arial" size:14];
+                    firstTitle.text=[NSString stringWithFormat:@"        %@",[muluArray objectAtIndex:indexPath.row-1]];
+                    [cell addSubview:firstTitle];
+                }
+                    break;
+                case 9:
+                {
+                    UILabel *firstTitle=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, cell.frame.size.width,  cell.frame.size.height)];
+                    firstTitle.backgroundColor=[UIColor clearColor];
+                    firstTitle.font= [UIFont fontWithName:@"Arial" size:14];
+                    firstTitle.text=[NSString stringWithFormat:@"        %@",[muluArray objectAtIndex:indexPath.row-1]];
+                    [cell addSubview:firstTitle];
+                }
+                    break;
+                default:
+                    break;
+            }
+        }
+            break;
+        case 2:
+        {
+            UIFont *font = [UIFont fontWithName:@"Arial" size:16];
+            UILabel *firstTitle=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, cell.frame.size.width,  cell.frame.size.height)];
+            firstTitle.backgroundColor=[UIColor blueColor];
+            firstTitle.font=font;
+            firstTitle.text=[NSString stringWithFormat:@"  %@",[objectsArray objectAtIndex:indexPath.section]];
+            [cell addSubview:firstTitle];
+
+        }
+            break;
+        case 3:
+        {
+            UIFont *font = [UIFont fontWithName:@"Arial" size:16];
+            UILabel *firstTitle=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, cell.frame.size.width,  cell.frame.size.height)];
+            firstTitle.backgroundColor=[UIColor blueColor];
+            firstTitle.font=font;
+            firstTitle.text=[NSString stringWithFormat:@"  %@",[objectsArray objectAtIndex:indexPath.section]];
+            [cell addSubview:firstTitle];
+
+        }
+            break;
+    }
+        
+    return cell;
+}
+
+- (IBAction)backAction:(id)sender {
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+- (IBAction)backToHomeAction:(id)sender
+{
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    switch (indexPath.section) {
+        case 0:
+        {
+            HaishijuZfxxDetailViewController *zfxxDetailViewController=[HaishijuZfxxDetailViewController shareHaishijuZfxxDetailViewController];
+            [self.navigationController pushViewController:zfxxDetailViewController animated:YES];
+            [zfxxDetailViewController loadInfoBySendRequest:@"4844"];
+        }
+            break;
+        case 1:
+        {
+            switch (indexPath.row) {
+                case 0:
+                {
+                    
+                }
+                    break;
+                case 1:
+                {
+                    
+                }
+                    break;
+                case 2:
+                {
+                    
+                }
+                    break;
+                case 3:
+                {
+                    HaishijuZfxxChildViewController *zfxxChildViewController=[HaishijuZfxxChildViewController shareHaishijuZfxxChildViewController];
+                    [self.navigationController pushViewController:zfxxChildViewController animated:YES];
+                    [zfxxChildViewController loadListByParentID:@"10"];
+                }
+                    break;
+                case 4:
+                {
+                    
+                }
+                    break;
+                case 5:
+                {
+                    
+                }
+                    break;
+                case 6:
+                {
+                    
+                }
+                    break;
+                case 7:
+                {
+                    HaishijuZfxxDetailViewController *zfxxDetailViewController=[HaishijuZfxxDetailViewController shareHaishijuZfxxDetailViewController];
+                    [self.navigationController pushViewController:zfxxDetailViewController animated:YES];
+                    [zfxxDetailViewController loadInfoBySendRequest:@"341"];
+
+                }
+                    break;
+                case 8:
+                {
+                    HaishijuZfxxDetailViewController *zfxxDetailViewController=[HaishijuZfxxDetailViewController shareHaishijuZfxxDetailViewController];
+                    [self.navigationController pushViewController:zfxxDetailViewController animated:YES];
+                    [zfxxDetailViewController loadInfoBySendRequest:@"344"];
+
+                }
+                    break;
+                case 9:
+                {
+                    HaishijuZfxxDetailViewController *zfxxDetailViewController=[HaishijuZfxxDetailViewController shareHaishijuZfxxDetailViewController];
+                    [self.navigationController pushViewController:zfxxDetailViewController animated:YES];
+                    [zfxxDetailViewController loadInfoBySendRequest:@"371"];
+
+                }
+                    break;
+            }
+        }
+            break;
+        case 2:
+        {
+            
+        }
+            break;
+        case 3:
+        {
+            
+        }
+            break;
+    }
+
+}
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+@end

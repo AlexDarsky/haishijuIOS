@@ -1,0 +1,244 @@
+//
+//  HaishijuCxcbDetailViewController.m
+//  haishijuIOS
+//
+//  Created by Darsky on 13-8-3.
+//  Copyright (c) 2013年 Darsky. All rights reserved.
+//
+
+#import "HaishijuNhcyDetailViewController.h"
+#import "HaishijuServerHelper.h"
+
+@interface HaishijuNhcyDetailViewController ()
+
+@end
+
+@implementation HaishijuNhcyDetailViewController
+@synthesize ID,tableView,customNavBar;
+@synthesize jigou,diqu,jiashigang,lunjigang,anquan,youchuan,weixianhuowu,kechuan,leiheyouting;
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    // Do any additional setup after loading the view from its nib.
+    self.navigationController.navigationBarHidden=YES;
+    self.customNavBar.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"homeNavBar"]];
+    self.view.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"listViewBG"]];
+}
+-(void)loadInfoBySendRequest:(NSString*)chuanID
+{
+    HaishijuServerHelper *serverHelper=[HaishijuServerHelper shareHaishijuServerHelper];
+    NSString *urlString=[NSString stringWithFormat:@"http://www.gdmsa.gov.cn/android/getDataDetail.asp?type=lhcbcy&ID=%@",chuanID];
+    NSDictionary *tmpDic=[NSDictionary dictionaryWithDictionary:[serverHelper sendRequestByUrl:urlString]];
+    NSArray *infoArray=[tmpDic objectForKey:@"datalist"];
+    NSDictionary *infoDic=[infoArray objectAtIndex:0];
+    self.ID=[chuanID intValue];
+    self.jigou=[infoDic objectForKey:@"jigou"];
+    self.diqu=[infoDic objectForKey:@"diqu"];
+    self.jiashigang=[infoDic objectForKey:@"jiashigang"];
+    self.lunjigang=[infoDic objectForKey:@"lunjigang"];
+    self.anquan=[infoDic objectForKey:@"anquan"];
+    self.youchuan=[infoDic objectForKey:@"youchuan"];
+    self.weixianhuowu=[infoDic objectForKey:@"weixianhuowu"];
+    self.kechuan=[infoDic objectForKey:@"kechuan"];
+    self.leiheyouting=[infoDic objectForKey:@"leiheyouting"];
+    [self.tableView reloadData];
+}
+- (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    
+    return 10;
+}
+
+- (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+-(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 40;
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // static NSString *cellIdentifier = @"MyCell";
+    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
+    
+    // cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    
+    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+    UIFont *font = [UIFont fontWithName:@"Arial" size:16];
+    switch (indexPath.row) {
+        case 0:
+        {
+            UILabel *IDTitle=[[UILabel alloc] initWithFrame:CGRectMake(20, 10, 40, 30)];
+            IDTitle.text=@"ID：";
+            IDTitle.textColor=[UIColor blackColor];
+            UILabel *IDLabel=[[UILabel alloc] initWithFrame:CGRectMake(60, 10, 80, 30)];
+            IDLabel.textColor=[UIColor blueColor];
+            IDLabel.text=[NSString stringWithFormat:@"%d",self.ID];
+            IDTitle.backgroundColor=IDLabel.backgroundColor=[UIColor clearColor];
+            IDTitle.font=IDLabel.font=font;
+            [cell addSubview:IDTitle];
+            [cell addSubview:IDLabel];
+        }
+            break;
+        case 1:
+        {
+            UILabel *nameTitle=[[UILabel alloc] initWithFrame:CGRectMake(20, 10, 100, 30)];
+            nameTitle.text=@"机构名称：";
+            nameTitle.textColor=[UIColor blackColor];
+            UIFont *font1= [UIFont fontWithName:@"Arial" size:14];
+            UILabel *chuanmingLabel=[[UILabel alloc] initWithFrame:CGRectMake(120, 10, 200, 30)];
+            chuanmingLabel.textColor=[UIColor blueColor];
+            chuanmingLabel.text=[NSString stringWithFormat:@"%@",self.jigou];
+            nameTitle.backgroundColor=chuanmingLabel.backgroundColor=[UIColor clearColor];
+            nameTitle.font=font;
+            chuanmingLabel.font=font1;
+            [cell addSubview:nameTitle];
+            [cell addSubview:chuanmingLabel];
+        }
+            break;
+        case 2:
+        {
+            UILabel *chuanjigangTitle=[[UILabel alloc] initWithFrame:CGRectMake(20, 10, 100, 30)];
+            chuanjigangTitle.text=@"所属辖区：";
+            chuanjigangTitle.textColor=[UIColor blackColor];
+            UILabel *chuanjigangLabel=[[UILabel alloc] initWithFrame:CGRectMake(160, 10, 210, 30)];
+            chuanjigangLabel.textColor=[UIColor blueColor];
+            chuanjigangTitle.backgroundColor=chuanjigangLabel.backgroundColor=[UIColor clearColor];
+            chuanjigangLabel.text=[NSString stringWithFormat:@"%@",self.diqu];
+            [cell addSubview:chuanjigangTitle];
+            [cell addSubview:chuanjigangLabel];
+
+        }
+            break;
+        case 3:
+        {
+            UILabel *chuanjigangTitle=[[UILabel alloc] initWithFrame:CGRectMake(20, 10, 100, 30)];
+            chuanjigangTitle.text=@"驾驶岗位：";
+            chuanjigangTitle.textColor=[UIColor blackColor];
+            UILabel *chuanjigangLabel=[[UILabel alloc] initWithFrame:CGRectMake(120, 10, 210, 30)];
+            chuanjigangLabel.textColor=[UIColor blueColor];
+            chuanjigangTitle.backgroundColor=chuanjigangLabel.backgroundColor=[UIColor clearColor];
+            chuanjigangLabel.text=[NSString stringWithFormat:@"%@",self.jiashigang];
+            [cell addSubview:chuanjigangTitle];
+            [cell addSubview:chuanjigangLabel];
+            
+        }
+            break;
+        case 4:
+        {
+            UILabel *chuanjigangTitle=[[UILabel alloc] initWithFrame:CGRectMake(20, 10, 100, 30)];
+            chuanjigangTitle.text=@"轮机岗位：";
+            chuanjigangTitle.textColor=[UIColor blackColor];
+            UILabel *chuanjigangLabel=[[UILabel alloc] initWithFrame:CGRectMake(120, 10, 210, 30)];
+            chuanjigangLabel.textColor=[UIColor blueColor];
+            chuanjigangTitle.backgroundColor=chuanjigangLabel.backgroundColor=[UIColor clearColor];
+            chuanjigangLabel.text=[NSString stringWithFormat:@"%@",self.lunjigang];
+            [cell addSubview:chuanjigangTitle];
+            [cell addSubview:chuanjigangLabel];
+            
+        }
+            break;
+        case 5:
+        {
+            UILabel *chuanjigangTitle=[[UILabel alloc] initWithFrame:CGRectMake(20, 10, 100, 30)];
+            chuanjigangTitle.text=@"基本安全：";
+            chuanjigangTitle.textColor=[UIColor blackColor];
+            UILabel *chuanjigangLabel=[[UILabel alloc] initWithFrame:CGRectMake(120, 10, 210, 30)];
+            chuanjigangLabel.textColor=[UIColor blueColor];
+            chuanjigangTitle.backgroundColor=chuanjigangLabel.backgroundColor=[UIColor clearColor];
+            chuanjigangLabel.text=[NSString stringWithFormat:@"%@",self.anquan];
+            [cell addSubview:chuanjigangTitle];
+            [cell addSubview:chuanjigangLabel];
+            
+        }
+            break;
+        case 6:
+        {
+            UILabel *chuanjigangTitle=[[UILabel alloc] initWithFrame:CGRectMake(20, 10, 70, 30)];
+            chuanjigangTitle.text=@"油船：";
+            chuanjigangTitle.textColor=[UIColor blackColor];
+            UILabel *chuanjigangLabel=[[UILabel alloc] initWithFrame:CGRectMake(90, 10, 210, 30)];
+            chuanjigangLabel.textColor=[UIColor blueColor];
+            chuanjigangTitle.backgroundColor=chuanjigangLabel.backgroundColor=[UIColor clearColor];
+            chuanjigangLabel.text=[NSString stringWithFormat:@"%@",self.youchuan];
+            [cell addSubview:chuanjigangTitle];
+            [cell addSubview:chuanjigangLabel];
+            
+        }
+            break;
+        case 7:
+        {
+            UILabel *chuanjigangTitle=[[UILabel alloc] initWithFrame:CGRectMake(20, 10, 160, 30)];
+            chuanjigangTitle.text=@"载运包装危险货物船舶：";
+            chuanjigangTitle.textColor=[UIColor blackColor];
+            UILabel *chuanjigangLabel=[[UILabel alloc] initWithFrame:CGRectMake(180, 10, 140, 30)];
+            chuanjigangLabel.textColor=[UIColor blueColor];
+            chuanjigangTitle.backgroundColor=chuanjigangLabel.backgroundColor=[UIColor clearColor];
+            chuanjigangLabel.text=[NSString stringWithFormat:@"%@",self.weixianhuowu];
+            [cell addSubview:chuanjigangTitle];
+            [cell addSubview:chuanjigangLabel];
+            
+        }
+            break;
+        case 8:
+        {
+            UILabel *chuanjigangTitle=[[UILabel alloc] initWithFrame:CGRectMake(20, 10, 70, 30)];
+            chuanjigangTitle.text=@"客船：";
+            chuanjigangTitle.textColor=[UIColor blackColor];
+            UILabel *chuanjigangLabel=[[UILabel alloc] initWithFrame:CGRectMake(90, 10, 210, 30)];
+            chuanjigangLabel.textColor=[UIColor blueColor];
+            chuanjigangTitle.backgroundColor=chuanjigangLabel.backgroundColor=[UIColor clearColor];
+            chuanjigangLabel.text=[NSString stringWithFormat:@"%@",self.kechuan];
+            [cell addSubview:chuanjigangTitle];
+            [cell addSubview:chuanjigangLabel];
+            
+        }
+            break;
+        case 9:
+        {
+            UILabel *chuanjigangTitle=[[UILabel alloc] initWithFrame:CGRectMake(20, 10, 140, 30)];
+            chuanjigangTitle.text=@"内河游艇操作人员：";
+            chuanjigangTitle.textColor=[UIColor blackColor];
+            UILabel *chuanjigangLabel=[[UILabel alloc] initWithFrame:CGRectMake(160, 10, 160, 30)];
+            chuanjigangLabel.textColor=[UIColor blueColor];
+            chuanjigangTitle.backgroundColor=chuanjigangLabel.backgroundColor=[UIColor clearColor];
+            chuanjigangLabel.text=[NSString stringWithFormat:@"%@",self.leiheyouting];
+            [cell addSubview:chuanjigangTitle];
+            [cell addSubview:chuanjigangLabel];
+            
+        }
+            break;
+    }
+    return cell;
+}
+- (IBAction)backAction:(id)sender
+{
+   // [self.navigationController popToViewController:self.n animated:<#(BOOL)#>];
+    int index=[[self.navigationController viewControllers]indexOfObject:self];
+    
+    [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:index-1]animated:YES];
+    
+}
+- (IBAction)backToHomeAction:(id)sender
+{
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+@end

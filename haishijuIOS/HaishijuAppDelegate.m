@@ -16,8 +16,17 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    self.viewController = [[HaishijuViewController alloc] initWithNibName:@"HaishijuViewController" bundle:nil];
-    self.window.rootViewController = self.viewController;
+    if ([[UIScreen mainScreen] bounds].size.height>480.00)
+    {
+        self.viewController = [[HaishijuViewController alloc] initWithNibName:@"HaishijuViewController_4" bundle:nil];
+ 
+    }else
+    {
+        self.viewController = [[HaishijuViewController alloc] initWithNibName:@"HaishijuViewController" bundle:nil];
+
+    }
+        UINavigationController *navigationController=[[UINavigationController alloc] initWithRootViewController:self.viewController];
+    self.window.rootViewController = navigationController;
     [self.window makeKeyAndVisible];
     return YES;
 }
