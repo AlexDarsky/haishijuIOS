@@ -53,7 +53,7 @@
     HaishijuServerHelper *serverHelper=[HaishijuServerHelper shareHaishijuServerHelper];
     //修改链接当中的type后面的参数，如sh。。。。下面所有的链接都需要修改
     self.classID=[NSString stringWithFormat:@"%@",parentID];
-    NSString *urlString =[NSString stringWithFormat:@"http://www.gdmsa.gov.cn/android/getDataList.asp?type=xxgk&classid =%@&Page=%d",self.classID,1];
+    NSString *urlString =[NSString stringWithFormat:@"http://www.gdmsa.gov.cn/android/getDataList.asp?type=xxgk&classid=%@&Page=%d",self.classID,1];
     NSDictionary *initDic=[[NSDictionary alloc] initWithDictionary:[serverHelper sendRequestByUrl:urlString]];
     if ([idsArray count]>0) {
         return;

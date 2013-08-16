@@ -194,10 +194,7 @@
             break;
         case 3:
         {
-            
-          UIAlertView *alertView=[[UIAlertView alloc] initWithTitle:@"错误" message:@"JSON格式不规范" delegate:nil cancelButtonTitle:@"等待处理" otherButtonTitles: nil];
-            [alertView show];
-            //[self.navigationController pushViewController:self.xccbViewController animated:YES];
+            [self.navigationController pushViewController:self.xccbViewController animated:YES];
         }
             break;
         case 4:
@@ -224,9 +221,7 @@
             break;
         case 8:
         {
-            UIAlertView *alertView=[[UIAlertView alloc] initWithTitle:@"错误" message:@"JSON格式不规范" delegate:nil cancelButtonTitle:@"等待处理" otherButtonTitles: nil];
-            [alertView show];
-          //  [self.navigationController pushViewController:self.zdgzViewController animated:YES];
+           [self.navigationController pushViewController:self.zdgzViewController animated:YES];
         }
             break;
         case 9:

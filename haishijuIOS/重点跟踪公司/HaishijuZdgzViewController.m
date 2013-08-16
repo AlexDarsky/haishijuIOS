@@ -99,10 +99,10 @@
     if (indexPath.row==0)
     {
         
-        UILabel *chuanmingLabel=[[UILabel alloc] initWithFrame:CGRectMake(40, 10, 120, 40)];
+        UILabel *chuanmingLabel=[[UILabel alloc] initWithFrame:CGRectMake(40, 10, 200, 40)];
         chuanmingLabel.text=@"公司名";
-        UILabel *chuanjigangLabel=[[UILabel alloc] initWithFrame:CGRectMake(160, 10, 160, 40)];
-        chuanjigangLabel.text=@"公司是否持有DOC";;
+        UILabel *chuanjigangLabel=[[UILabel alloc] initWithFrame:CGRectMake(240, 10, 80, 40)];
+        chuanjigangLabel.text=@"isDOC";;
         chuanjigangLabel.font=chuanmingLabel.font=font;
         chuanmingLabel.backgroundColor=chuanjigangLabel.backgroundColor=[UIColor clearColor];
         chuanmingLabel.textColor=chuanjigangLabel.textColor=[UIColor blackColor];
@@ -117,9 +117,9 @@
         [nextBtn setBackgroundImage:[UIImage imageNamed:@"nextItem"] forState:UIControlStateNormal];
         [nextBtn addTarget:self action:@selector(pushAction:) forControlEvents:UIControlEventTouchUpInside];
         [nextBtn setTag:indexPath.row-1];
-        UILabel *chuanmingLabel=[[UILabel alloc] initWithFrame:CGRectMake(40, 10, 120, 40)];
+        UILabel *chuanmingLabel=[[UILabel alloc] initWithFrame:CGRectMake(40, 10, 200, 40)];
         chuanmingLabel.text=[chuanmingsArray objectAtIndex:indexPath.row-1];
-        UILabel *chuanjigangLabel=[[UILabel alloc] initWithFrame:CGRectMake(160, 10, 210, 40)];
+        UILabel *chuanjigangLabel=[[UILabel alloc] initWithFrame:CGRectMake(240, 10, 80, 40)];
         chuanjigangLabel.text=[chuanjigangsArray objectAtIndex:indexPath.row-1];
         chuanjigangLabel.font=chuanmingLabel.font=font;
         chuanmingLabel.backgroundColor=chuanjigangLabel.backgroundColor=[UIColor clearColor];

@@ -14,13 +14,13 @@
 }
 @property (weak, nonatomic) IBOutlet UIView *customNavBar;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong,nonatomic) NSString *chuanMing;
-@property (strong,nonatomic) NSString *chuanJiGang;
-@property (strong,nonatomic) NSString *owner;
-@property (strong,nonatomic) NSString *dengJiNO;
-@property (strong,nonatomic) NSString *type;
-@property (strong,nonatomic) NSString *genZhongYuanyin;
-@property (strong,nonatomic) NSString *faShenDate;
+@property (strong,nonatomic) NSString *ChuanMing;
+@property (strong,nonatomic) NSString *ChuanJiGang;
+@property (strong,nonatomic) NSString *Owner;
+@property (strong,nonatomic) NSString *Info;
+@property (strong,nonatomic) NSString *Type;
+@property (strong,nonatomic) NSString *GenZhongYuanyin;
+@property (strong,nonatomic) NSString *YiJu;
 @property (readwrite) int ID;
 -(void)loadInfoBySendRequest:(NSString*)chuanID;
 @end

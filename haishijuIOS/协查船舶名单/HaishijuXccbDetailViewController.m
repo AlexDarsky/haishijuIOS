@@ -14,7 +14,7 @@
 @end
 
 @implementation HaishijuXccbDetailViewController
-@synthesize chuanJiGang,chuanMing,owner,ID,tableView,customNavBar;
+@synthesize ChuanJiGang,ChuanMing,Owner,Info,Type,GenZhongYuanyin,YiJu,ID,tableView,customNavBar;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -42,18 +42,18 @@
     NSDictionary *infoDic=[infoArray objectAtIndex:0];
     self.ID=[chuanID intValue];
     self.chuanMing=[infoDic objectForKey:@"ChuanMing"];
-    self.dengJiNO=[infoDic objectForKey:@"Info"];
-    self.chuanJiGang=[infoDic objectForKey:@"ChuanJiGang"];
-    self.type=[infoDic objectForKey:@"Type"];
-    self.owner=[infoDic objectForKey:@"Owner"];
-    self.genZhongYuanyin=[infoDic objectForKey:@"GenZhongYuanyin"];
-     self.faShenDate=[infoDic objectForKey:@"YiJu"];
+    self.Info=[infoDic objectForKey:@"Info"];
+    self.ChuanJiGang=[infoDic objectForKey:@"ChuanJiGang"];
+    self.Type=[infoDic objectForKey:@"Type"];
+    self.Owner=[infoDic objectForKey:@"Owner"];
+    self.GenZhongYuanyin=[infoDic objectForKey:@"GenZhongYuanyin"];
+    self.YiJu=[infoDic objectForKey:@"YiJu"];
     [self.tableView reloadData];
 }
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return 7;
+    return 8;
 }
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
@@ -63,6 +63,9 @@
 
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.row==6) {
+        return 120;
+    }
     return 40;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -96,7 +99,7 @@
             nameTitle.textColor=[UIColor blackColor];
             UILabel *chuanmingLabel=[[UILabel alloc] initWithFrame:CGRectMake(70, 10, 200, 30)];
             chuanmingLabel.textColor=[UIColor blueColor];
-            chuanmingLabel.text=[NSString stringWithFormat:@"%@",self.chuanMing];
+            chuanmingLabel.text=[NSString stringWithFormat:@"%@",self.ChuanMing];
             nameTitle.backgroundColor=chuanmingLabel.backgroundColor=[UIColor clearColor];
             nameTitle.font=chuanmingLabel.font=font;
             [cell addSubview:nameTitle];
@@ -111,7 +114,7 @@
             UILabel *chuanjigangLabel=[[UILabel alloc] initWithFrame:CGRectMake(160, 10, 210, 30)];
             chuanjigangLabel.textColor=[UIColor blueColor];
             chuanjigangTitle.backgroundColor=chuanjigangLabel.backgroundColor=[UIColor clearColor];
-            chuanjigangLabel.text=[NSString stringWithFormat:@"%@",self.dengJiNO];
+            chuanjigangLabel.text=[NSString stringWithFormat:@"%@",self.Info];
             [cell addSubview:chuanjigangTitle];
             [cell addSubview:chuanjigangLabel];
 
@@ -119,14 +122,14 @@
             break;
         case 3:
         {
-            UILabel *gongsiTitle=[[UILabel alloc] initWithFrame:CGRectMake(20, 10, 70, 30)];
+            UILabel *gongsiTitle=[[UILabel alloc] initWithFrame:CGRectMake(20, 10, 120, 30)];
             gongsiTitle.text=@"国籍/船籍港：";
             gongsiTitle.textColor=[UIColor blackColor];
-            UILabel *gongsiLabel=[[UILabel alloc] initWithFrame:CGRectMake(90, 10, 230, 30)];
+            UILabel *gongsiLabel=[[UILabel alloc] initWithFrame:CGRectMake(140, 10, 200, 30)];
             gongsiLabel.textColor=[UIColor blueColor];
             gongsiTitle.backgroundColor=gongsiLabel.backgroundColor=[UIColor clearColor];
             gongsiTitle.font=gongsiLabel.font=font;
-            gongsiLabel.text=[NSString stringWithFormat:@"%@",self.chuanJiGang];
+            gongsiLabel.text=[NSString stringWithFormat:@"%@",self.ChuanJiGang];
             [cell addSubview:gongsiTitle];
             [cell addSubview:gongsiLabel];
 
@@ -141,7 +144,7 @@
             gongsiLabel.textColor=[UIColor blueColor];
             gongsiTitle.backgroundColor=gongsiLabel.backgroundColor=[UIColor clearColor];
             gongsiTitle.font=gongsiLabel.font=font;
-            gongsiLabel.text=[NSString stringWithFormat:@"%@",self.type];
+            gongsiLabel.text=[NSString stringWithFormat:@"%@",self.Type];
             [cell addSubview:gongsiTitle];
             [cell addSubview:gongsiLabel];
             
@@ -157,7 +160,7 @@
             gongsiTitle.backgroundColor=gongsiLabel.backgroundColor=[UIColor clearColor];
             gongsiTitle.font=gongsiLabel.font=font;
             gongsiTitle.numberOfLines=0;
-            gongsiLabel.text=[NSString stringWithFormat:@"%@",self.owner];
+            gongsiLabel.text=[NSString stringWithFormat:@"%@",self.Owner];
             [cell addSubview:gongsiTitle];
             [cell addSubview:gongsiLabel];
             
@@ -168,11 +171,11 @@
             UILabel *gongsiTitle=[[UILabel alloc] initWithFrame:CGRectMake(20, 10, 100, 30)];
             gongsiTitle.text=@"协查原因：";
             gongsiTitle.textColor=[UIColor blackColor];
-            UILabel *gongsiLabel=[[UILabel alloc] initWithFrame:CGRectMake(120, 10, 200, 30)];
+            UITextView *gongsiLabel=[[UITextView alloc] initWithFrame:CGRectMake(120, 10, 200, 110)];
             gongsiLabel.textColor=[UIColor blueColor];
             gongsiTitle.backgroundColor=gongsiLabel.backgroundColor=[UIColor clearColor];
             gongsiTitle.font=gongsiLabel.font=font;
-            gongsiLabel.text=[NSString stringWithFormat:@"%@",self.genZhongYuanyin];
+            gongsiLabel.text=[NSString stringWithFormat:@"%@",self.GenZhongYuanyin];
             [cell addSubview:gongsiTitle];
             [cell addSubview:gongsiLabel];
             
@@ -183,11 +186,11 @@
             UILabel *gongsiTitle=[[UILabel alloc] initWithFrame:CGRectMake(20, 10, 100, 30)];
             gongsiTitle.text=@"协查依据：";
             gongsiTitle.textColor=[UIColor blackColor];
-            UILabel *gongsiLabel=[[UILabel alloc] initWithFrame:CGRectMake(110, 10, 230, 30)];
+            UILabel *gongsiLabel=[[UILabel alloc] initWithFrame:CGRectMake(110, 10, 120, 30)];
             gongsiLabel.textColor=[UIColor blueColor];
             gongsiTitle.backgroundColor=gongsiLabel.backgroundColor=[UIColor clearColor];
             gongsiTitle.font=gongsiLabel.font=font;
-            gongsiLabel.text=[NSString stringWithFormat:@"%@",self.faShenDate];
+            gongsiLabel.text=[NSString stringWithFormat:@"%@",self.YiJu];
             [cell addSubview:gongsiTitle];
             [cell addSubview:gongsiLabel];
             

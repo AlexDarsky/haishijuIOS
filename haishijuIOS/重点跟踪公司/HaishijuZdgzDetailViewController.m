@@ -60,6 +60,9 @@
 
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.row==2) {
+        return 150;
+    }else
     return 40;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -102,14 +105,15 @@
             break;
         case 2:
         {
-            UILabel *chuanjigangTitle=[[UILabel alloc] initWithFrame:CGRectMake(20, 10, 140, 30)];
+            UILabel *chuanjigangTitle=[[UILabel alloc] initWithFrame:CGRectMake(20, 10, 160, 30)];
             chuanjigangTitle.text=@"实施重点跟踪原因：";
             chuanjigangTitle.textColor=[UIColor blackColor];
-            UILabel *chuanjigangLabel=[[UILabel alloc] initWithFrame:CGRectMake(160, 10, 160, 30)];
+            UITextView *chuanjigangLabel=[[UITextView alloc] initWithFrame:CGRectMake(20, 40, 280, 110)];
             chuanjigangLabel.textColor=[UIColor blueColor];
-            chuanjigangLabel.numberOfLines=0;
+            chuanjigangLabel.editable=NO;
             chuanjigangTitle.backgroundColor=chuanjigangLabel.backgroundColor=[UIColor clearColor];
-            chuanjigangLabel.text=[NSString stringWithFormat:@"%@",self.Info];
+           chuanjigangLabel.text=[NSString stringWithFormat:@"%@",self.Info];
+            chuanjigangLabel.font=chuanjigangTitle.font=font;
             [cell addSubview:chuanjigangTitle];
             [cell addSubview:chuanjigangLabel];
 
@@ -117,10 +121,10 @@
             break;
         case 3:
         {
-            UILabel *gongsiTitle=[[UILabel alloc] initWithFrame:CGRectMake(20, 10, 140, 30)];
+            UILabel *gongsiTitle=[[UILabel alloc] initWithFrame:CGRectMake(20, 10, 150, 30)];
             gongsiTitle.text=@"公司是否持有DOC：";
             gongsiTitle.textColor=[UIColor blackColor];
-            UILabel *gongsiLabel=[[UILabel alloc] initWithFrame:CGRectMake(160, 10, 230, 30)];
+            UILabel *gongsiLabel=[[UILabel alloc] initWithFrame:CGRectMake(170, 10, 150, 30)];
             gongsiLabel.textColor=[UIColor blueColor];
             gongsiTitle.backgroundColor=gongsiLabel.backgroundColor=[UIColor clearColor];
             gongsiTitle.font=gongsiLabel.font=font;
