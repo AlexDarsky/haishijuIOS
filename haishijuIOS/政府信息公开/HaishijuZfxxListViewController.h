@@ -37,4 +37,5 @@
 @property (weak, nonatomic) IBOutlet UILabel *listTitle;
 @property (strong,nonatomic)NSString *classID;
 -(void)loadListBy:(NSString*)parentID;
++(HaishijuZfxxListViewController*)shareHaishijuZfxxListViewController;
 @end

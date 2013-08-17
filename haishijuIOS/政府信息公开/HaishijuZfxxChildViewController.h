@@ -10,8 +10,8 @@
 #import "MLTableAlert.h"
 @interface HaishijuZfxxChildViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
 {
-    NSMutableArray *objectsArray;
     NSMutableArray *idsArray;
+    NSMutableArray *objectsArray;
     int selectBtnIndex;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;

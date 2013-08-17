@@ -34,7 +34,15 @@
     // Do any additional setup after loading the view from its nib.
     objectsArray=[[NSMutableArray alloc] initWithObjects:@"政府信息公开指南",@"政府信息公开目录",@"信息公开年报",@"信息公开申请", nil];
     muluArray=[[NSMutableArray alloc] initWithObjects:@"组织机构",@"海事行政处罚",@"海事项目",@"干部任免",@"人事管理",@"年度计划",@"海事行政许可",@"听证与复议",@"海事规费", nil];
-    self.zfxxListViewController=[[HaishijuZfxxListViewController alloc] init];
+ 
+    if ([[UIScreen mainScreen] bounds].size.height>480.00)
+    {
+           self.zfxxListViewController=[[HaishijuZfxxListViewController alloc] initWithNibName:@"HaishijuZfxxListViewController_4" bundle:nil];
+    }
+    else
+    {
+                   self.zfxxListViewController=[[HaishijuZfxxListViewController alloc] initWithNibName:@"HaishijuZfxxListViewController" bundle:nil];
+    }
     //根据接口文档改写一下数组路面的objects，以下分别对应文档中的中文说明和字段
     self.navigationController.navigationBarHidden=YES;
     self.customNavBar.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"homeNavBar"]];

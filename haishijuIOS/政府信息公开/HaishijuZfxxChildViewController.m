@@ -10,6 +10,7 @@
 #import "HaishijuServerHelper.h"
 #import <QuartzCore/QuartzCore.h>
 #import "HaishijuZfxxDetailViewController.h"
+#import "HaishijuZfxxListViewController.h"
 @interface HaishijuZfxxChildViewController ()
 
 @end
@@ -53,14 +54,24 @@ static HaishijuZfxxChildViewController *shareHaishijuZfxxChildViewController = n
     HaishijuServerHelper *serverHelper=[HaishijuServerHelper shareHaishijuServerHelper];
     //修改url中的type的参数
     NSString *urlString=[NSString stringWithFormat:@"http://www.gdmsa.gov.cn/android/getDataList.asp?type=class_child&classid=%@",parentID];
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setURL:[NSURL URLWithString:urlString]];
-    [request setHTTPMethod:@"POST"];
-    NSHTTPURLResponse* urlResponse = nil;
-    NSError *error = [[NSError alloc] init];
-    NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&urlResponse error:&error];
-    NSString *jsonString=[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
-    NSLog(@"%@",jsonString);
+    NSDictionary *initDic=[[NSDictionary alloc] initWithDictionary:[serverHelper sendRequestByUrl:urlString]];
+    if ([idsArray count]>0) {
+        [idsArray removeAllObjects];
+        [objectsArray removeAllObjects];
+        NSLog(@"array Clean");
+    }
+    NSLog(@"load dataList");
+    NSArray *dataList=[[NSArray alloc] initWithArray:[initDic objectForKey:@"datalist"]];
+    NSLog(@"%d",[dataList count]);
+    for (NSDictionary *dic in dataList)
+    {
+        [idsArray addObject:[dic objectForKey:@"classid"]];
+        //一下根据要显示的数据修改KEY，一般是一行显示两个，key对应文档中的字段。下面代码所有类似的部分都要修改
+        [objectsArray addObject:[dic objectForKey:@"classname"]];
+    }
+    NSArray *pageInfoArray=[[NSArray alloc] initWithArray:[initDic objectForKey:@"page"]];
+    NSDictionary *pageInfo=[[NSDictionary alloc] initWithDictionary:[pageInfoArray objectAtIndex:0]];
+    [self.tableView reloadData];
 }
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -84,7 +95,7 @@ static HaishijuZfxxChildViewController *shareHaishijuZfxxChildViewController = n
     [cell setSelectionStyle:UITableViewCellSelectionStyleGray];
     UIFont *font = [UIFont fontWithName:@"Arial" size:16];
     UILabel *firstTitle=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, cell.frame.size.width,  cell.frame.size.height)];
-    firstTitle.backgroundColor=[UIColor blueColor];
+    firstTitle.backgroundColor=[UIColor clearColor];
     firstTitle.font=font;
     firstTitle.text=[NSString stringWithFormat:@"  %@",[objectsArray objectAtIndex:indexPath.row]];
     [cell addSubview:firstTitle];
@@ -92,7 +103,8 @@ static HaishijuZfxxChildViewController *shareHaishijuZfxxChildViewController = n
 }
 
 - (IBAction)backAction:(id)sender {
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    int index=[[self.navigationController viewControllers]indexOfObject:self];
+    [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:index-1]animated:YES];
 }
 - (IBAction)backToHomeAction:(id)sender
 {
@@ -101,7 +113,10 @@ static HaishijuZfxxChildViewController *shareHaishijuZfxxChildViewController = n
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    HaishijuZfxxListViewController *zfxxListViewController=[HaishijuZfxxListViewController shareHaishijuZfxxListViewController];
+    [self.navigationController pushViewController:zfxxListViewController animated:YES];
+    [zfxxListViewController.listTitle setText:@"信息公开年报表"];
+    [zfxxListViewController loadListBy:@"81"];
 }
 - (void)didReceiveMemoryWarning
 {

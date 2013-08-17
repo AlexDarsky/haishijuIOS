@@ -15,12 +15,24 @@
 
 @implementation HaishijuZfxxListViewController
 @synthesize tableView,customNavBar,serachField,customSearchBar,button1,button2,button3,button4,button5,buttonMore,keySelectBtn,alert,searchFieldString,listTitle,classID;
-
+static HaishijuZfxxListViewController *shareHaishijuZfxxListViewController = nil;
++(HaishijuZfxxListViewController*)shareHaishijuZfxxListViewController
+{
+    
+    if (shareHaishijuZfxxListViewController == nil) {
+        shareHaishijuZfxxListViewController = [[super allocWithZone:NULL] init];
+    }
+    return shareHaishijuZfxxListViewController;
+}
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
+    if ([[UIScreen mainScreen] bounds].size.height>480.00)
+    {
+        self=[super initWithNibName:@"HaishijuZfxxListViewController_4" bundle:nil];
+    }
+    else
+    {
+        self=[super initWithNibName:@"HaishijuZfxxListViewController" bundle:nil];
     }
     return self;
 }
@@ -56,9 +68,11 @@
     NSString *urlString =[NSString stringWithFormat:@"http://www.gdmsa.gov.cn/android/getDataList.asp?type=xxgk&classid=%@&Page=%d",self.classID,1];
     NSDictionary *initDic=[[NSDictionary alloc] initWithDictionary:[serverHelper sendRequestByUrl:urlString]];
     if ([idsArray count]>0) {
-        return;
-    }else
-    {
+        [idsArray removeAllObjects];
+        [chuanjigangsArray removeAllObjects];
+        [chuanmingsArray removeAllObjects];
+        NSLog(@"array Clean");
+    }
         NSLog(@"load dataList");
         NSArray *dataList=[[NSArray alloc] initWithArray:[initDic objectForKey:@"datalist"]];
         NSLog(@"%d",[dataList count]);
@@ -76,7 +90,7 @@
         [self setButtonsByTotalPage:totalPage];
         button1.selected=YES;
         selectBtnIndex=1;
-    }
+    [self.tableView reloadData];
 
 }
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -102,14 +116,14 @@
     // cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-    UIFont *font = [UIFont fontWithName:@"Arial" size:16];
+    UIFont *font = [UIFont fontWithName:@"Arial" size:14];
     if (indexPath.row==0)
     {
         
-        UILabel *chuanmingLabel=[[UILabel alloc] initWithFrame:CGRectMake(40, 10, 120, 40)];
+        UILabel *chuanmingLabel=[[UILabel alloc] initWithFrame:CGRectMake(40, 10, 140, 40)];
         //根据需要写出列名
         chuanmingLabel.text=@"名称";
-        UILabel *chuanjigangLabel=[[UILabel alloc] initWithFrame:CGRectMake(160, 10, 160, 40)];
+        UILabel *chuanjigangLabel=[[UILabel alloc] initWithFrame:CGRectMake(190, 10, 130, 40)];
         chuanjigangLabel.text=@"生成日期";;
         chuanjigangLabel.font=chuanmingLabel.font=font;
         chuanmingLabel.backgroundColor=chuanjigangLabel.backgroundColor=[UIColor clearColor];
@@ -125,12 +139,14 @@
         [nextBtn setBackgroundImage:[UIImage imageNamed:@"nextItem"] forState:UIControlStateNormal];
         [nextBtn addTarget:self action:@selector(pushAction:) forControlEvents:UIControlEventTouchUpInside];
         [nextBtn setTag:indexPath.row-1];
-        UILabel *chuanmingLabel=[[UILabel alloc] initWithFrame:CGRectMake(40, 10, 120, 50)];
+        UILabel *chuanmingLabel=[[UILabel alloc] initWithFrame:CGRectMake(40, 10, 140, 50)];
         chuanmingLabel.text=[chuanmingsArray objectAtIndex:indexPath.row-1];
-        UILabel *chuanjigangLabel=[[UILabel alloc] initWithFrame:CGRectMake(160, 10, 210, 50)];
+
+        UILabel *chuanjigangLabel=[[UILabel alloc] initWithFrame:CGRectMake(190, 10, 130, 50)];
         chuanjigangLabel.numberOfLines=chuanmingLabel.numberOfLines=0;
         chuanjigangLabel.text=[chuanjigangsArray objectAtIndex:indexPath.row-1];
         chuanjigangLabel.font=chuanmingLabel.font=font;
+        chuanmingLabel.adjustsFontSizeToFitWidth=YES;
         chuanmingLabel.backgroundColor=chuanjigangLabel.backgroundColor=[UIColor clearColor];
         chuanmingLabel.textColor=chuanjigangLabel.textColor=[UIColor blueColor];
         [cell addSubview:nextBtn];
@@ -164,8 +180,8 @@
             for (NSDictionary *dic in dataList)
             {
                 [idsArray addObject:[dic objectForKey:@"ID"]];
-                [chuanmingsArray addObject:[dic objectForKey:@"ChuanMing"]];
-                [chuanjigangsArray addObject:[dic objectForKey:@"SMCNO"]];
+                [chuanmingsArray addObject:[dic objectForKey:@"title"]];
+                [chuanjigangsArray addObject:[dic objectForKey:@"createtime"]];
                         }
             [self.tableView reloadData];
             }
@@ -190,8 +206,8 @@
             for (NSDictionary *dic in dataList)
             {
                 [idsArray addObject:[dic objectForKey:@"ID"]];
-                [chuanmingsArray addObject:[dic objectForKey:@"ChuanMing"]];
-                [chuanjigangsArray addObject:[dic objectForKey:@"SMCNO"]];
+                [chuanmingsArray addObject:[dic objectForKey:@"title"]];
+                [chuanjigangsArray addObject:[dic objectForKey:@"createtime"]];
                           }
             [self.tableView reloadData];
         }
@@ -216,8 +232,8 @@
             for (NSDictionary *dic in dataList)
             {
                 [idsArray addObject:[dic objectForKey:@"ID"]];
-                [chuanmingsArray addObject:[dic objectForKey:@"ChuanMing"]];
-                [chuanjigangsArray addObject:[dic objectForKey:@"SMCNO"]];
+                [chuanmingsArray addObject:[dic objectForKey:@"title"]];
+                [chuanjigangsArray addObject:[dic objectForKey:@"createtime"]];
                            }
             [self.tableView reloadData];
             }
@@ -242,8 +258,8 @@
             for (NSDictionary *dic in dataList)
             {
                 [idsArray addObject:[dic objectForKey:@"ID"]];
-                [chuanmingsArray addObject:[dic objectForKey:@"ChuanMing"]];
-                [chuanjigangsArray addObject:[dic objectForKey:@"SMCNO"]];
+                [chuanmingsArray addObject:[dic objectForKey:@"title"]];
+                [chuanjigangsArray addObject:[dic objectForKey:@"createtime"]];
                            }
             [self.tableView reloadData];
         }
@@ -302,8 +318,8 @@
             for (NSDictionary *dic in dataList)
             {
                 [idsArray addObject:[dic objectForKey:@"ID"]];
-                [chuanmingsArray addObject:[dic objectForKey:@"ChuanMing"]];
-                [chuanjigangsArray addObject:[dic objectForKey:@"SMCNO"]];
+                [chuanmingsArray addObject:[dic objectForKey:@"title"]];
+                [chuanjigangsArray addObject:[dic objectForKey:@"createtime"]];
                           }
             [self.tableView reloadData];
             }
@@ -335,8 +351,8 @@
                 for (NSDictionary *dic in dataList)
                 {
                     [idsArray addObject:[dic objectForKey:@"ID"]];
-                    [chuanmingsArray addObject:[dic objectForKey:@"ChuanMing"]];
-                    [chuanjigangsArray addObject:[dic objectForKey:@"SMCNO"]];
+                    [chuanmingsArray addObject:[dic objectForKey:@"title"]];
+                    [chuanjigangsArray addObject:[dic objectForKey:@"createtime"]];
                                }
                 [self.tableView reloadData];
             }
@@ -361,8 +377,8 @@
                 for (NSDictionary *dic in dataList)
                 {
                     [idsArray addObject:[dic objectForKey:@"ID"]];
-                    [chuanmingsArray addObject:[dic objectForKey:@"ChuanMing"]];
-                    [chuanjigangsArray addObject:[dic objectForKey:@"SMCNO"]];
+                    [chuanmingsArray addObject:[dic objectForKey:@"title"]];
+                    [chuanjigangsArray addObject:[dic objectForKey:@"createtime"]];
                                   }
                 [self.tableView reloadData];
             }
@@ -388,8 +404,8 @@
                 for (NSDictionary *dic in dataList)
                 {
                     [idsArray addObject:[dic objectForKey:@"ID"]];
-                    [chuanmingsArray addObject:[dic objectForKey:@"ChuanMing"]];
-                    [chuanjigangsArray addObject:[dic objectForKey:@"SMCNO"]];
+                    [chuanmingsArray addObject:[dic objectForKey:@"title"]];
+                    [chuanjigangsArray addObject:[dic objectForKey:@"createtime"]];
                   //  [gongsisArray addObject:[dic objectForKey:@"GongSi"]];
                 }
                 [self.tableView reloadData];
@@ -415,8 +431,8 @@
             for (NSDictionary *dic in dataList)
             {
                 [idsArray addObject:[dic objectForKey:@"ID"]];
-                [chuanmingsArray addObject:[dic objectForKey:@"ChuanMing"]];
-                [chuanjigangsArray addObject:[dic objectForKey:@"SMCNO"]];
+                [chuanmingsArray addObject:[dic objectForKey:@"title"]];
+                [chuanjigangsArray addObject:[dic objectForKey:@"createtime"]];
                          }
             [self.tableView reloadData];
         }
@@ -442,8 +458,8 @@
                 for (NSDictionary *dic in dataList)
                 {
                     [idsArray addObject:[dic objectForKey:@"ID"]];
-                    [chuanmingsArray addObject:[dic objectForKey:@"ChuanMing"]];
-                    [chuanjigangsArray addObject:[dic objectForKey:@"SMCNO"]];
+                    [chuanmingsArray addObject:[dic objectForKey:@"title"]];
+                    [chuanjigangsArray addObject:[dic objectForKey:@"createtime"]];
                                    }
                 [self.tableView reloadData];
             }
@@ -496,8 +512,8 @@
                 for (NSDictionary *dic in dataList)
                 {
                     [idsArray addObject:[dic objectForKey:@"ID"]];
-                    [chuanmingsArray addObject:[dic objectForKey:@"ChuanMing"]];
-                    [chuanjigangsArray addObject:[dic objectForKey:@"SMCNO"]];
+                    [chuanmingsArray addObject:[dic objectForKey:@"title"]];
+                    [chuanjigangsArray addObject:[dic objectForKey:@"createtime"]];
                 }
                 [self.tableView reloadData];
             }
@@ -536,8 +552,8 @@
             for (NSDictionary *dic in dataList)
             {
                 [idsArray addObject:[dic objectForKey:@"ID"]];
-                [chuanmingsArray addObject:[dic objectForKey:@"ChuanMing"]];
-                [chuanjigangsArray addObject:[dic objectForKey:@"SMCNO"]];
+                [chuanmingsArray addObject:[dic objectForKey:@"title"]];
+                [chuanjigangsArray addObject:[dic objectForKey:@"createtime"]];
               //  [gongsisArray addObject:[dic objectForKey:@"GongSi"]];
             }
             [self.tableView reloadData];
@@ -551,7 +567,8 @@
     [sender resignFirstResponder];
 }
 - (IBAction)backAction:(id)sender {
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    int index=[[self.navigationController viewControllers]indexOfObject:self];
+    [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:index-1]animated:YES];
 }
 - (IBAction)backToHomeAction:(id)sender
 {
@@ -618,8 +635,8 @@
                for (NSDictionary *dic in dataList)
         {
             [idsArray addObject:[dic objectForKey:@"ID"]];
-            [chuanmingsArray addObject:[dic objectForKey:@"ChuanMing"]];
-            [chuanjigangsArray addObject:[dic objectForKey:@"SMCNO"]];
+            [chuanmingsArray addObject:[dic objectForKey:@"title"]];
+            [chuanjigangsArray addObject:[dic objectForKey:@"createtime"]];
             // [gongsisArray addObject:[dic objectForKey:@"GongSi"]];
         }
         NSArray *pageInfoArray=[[NSArray alloc] initWithArray:[initDic objectForKey:@"page"]];

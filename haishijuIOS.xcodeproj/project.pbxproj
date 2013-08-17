@@ -173,6 +173,8 @@
 		18D9E90717B8D388006AAE8C /* HaishijuZfzcxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D9E90117B8D388006AAE8C /* HaishijuZfzcxViewController.m */; };
 		18D9E90817B8D388006AAE8C /* HaishijuZfzcxViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D9E90217B8D388006AAE8C /* HaishijuZfzcxViewController.xib */; };
 		18D9E90917B8D388006AAE8C /* HaishijuZfzcxViewController_4.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D9E90317B8D388006AAE8C /* HaishijuZfzcxViewController_4.xib */; };
+		18EA893317BF144400C4110F /* HaishijuRequisitionFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EA893117BF144400C4110F /* HaishijuRequisitionFirstViewController.m */; };
+		18EA893417BF144400C4110F /* HaishijuRequisitionFirstViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EA893217BF144400C4110F /* HaishijuRequisitionFirstViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -393,6 +395,9 @@
 		18D9E90117B8D388006AAE8C /* HaishijuZfzcxViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HaishijuZfzcxViewController.m; sourceTree = "<group>"; };
 		18D9E90217B8D388006AAE8C /* HaishijuZfzcxViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HaishijuZfzcxViewController.xib; sourceTree = "<group>"; };
 		18D9E90317B8D388006AAE8C /* HaishijuZfzcxViewController_4.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HaishijuZfzcxViewController_4.xib; sourceTree = "<group>"; };
+		18EA893017BF144400C4110F /* HaishijuRequisitionFirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HaishijuRequisitionFirstViewController.h; sourceTree = "<group>"; };
+		18EA893117BF144400C4110F /* HaishijuRequisitionFirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HaishijuRequisitionFirstViewController.m; sourceTree = "<group>"; };
+		18EA893217BF144400C4110F /* HaishijuRequisitionFirstViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HaishijuRequisitionFirstViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -492,6 +497,7 @@
 		185E3F9C17BBD96F00173A97 /* 政府信息公开 */ = {
 			isa = PBXGroup;
 			children = (
+				18EA892F17BF13E200C4110F /* 在线申请 */,
 				188E235917BCBC1500ECE37C /* HaishijuZfxxListViewController.h */,
 				188E235717BCBC1500ECE37C /* HaishijuZfxxListViewController.m */,
 				188E235A17BCBC1500ECE37C /* HaishijuZfxxListViewController.xib */,
@@ -825,6 +831,16 @@
 			path = "执法人员执法证查询";
 			sourceTree = "<group>";
 		};
+		18EA892F17BF13E200C4110F /* 在线申请 */ = {
+			isa = PBXGroup;
+			children = (
+				18EA893017BF144400C4110F /* HaishijuRequisitionFirstViewController.h */,
+				18EA893117BF144400C4110F /* HaishijuRequisitionFirstViewController.m */,
+				18EA893217BF144400C4110F /* HaishijuRequisitionFirstViewController.xib */,
+			);
+			path = "在线申请";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -991,6 +1007,7 @@
 				188E239617BCDA6800ECE37C /* HaishijuJyjhcDetailViewController_4.xib in Resources */,
 				188E239817BCDA6800ECE37C /* HaishijuJyjhcViewController.xib in Resources */,
 				188E239917BCDA6800ECE37C /* HaishijuJyjhcViewController_4.xib in Resources */,
+				18EA893417BF144400C4110F /* HaishijuRequisitionFirstViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1049,6 +1066,7 @@
 				188E239117BCDA6800ECE37C /* HaishijuHywpjgViewController.m in Sources */,
 				188E239417BCDA6800ECE37C /* HaishijuJyjhcDetailViewController.m in Sources */,
 				188E239717BCDA6800ECE37C /* HaishijuJyjhcViewController.m in Sources */,
+				18EA893317BF144400C4110F /* HaishijuRequisitionFirstViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
