@@ -39,6 +39,7 @@ static HaishijuZfxxChildViewController *shareHaishijuZfxxChildViewController = n
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    idsArray=[[NSMutableArray alloc] initWithCapacity:0];
     objectsArray=[[NSMutableArray alloc] initWithCapacity:0];
     //根据接口文档改写一下数组路面的objects，以下分别对应文档中的中文说明和字段
     self.navigationController.navigationBarHidden=YES;
@@ -65,12 +66,11 @@ static HaishijuZfxxChildViewController *shareHaishijuZfxxChildViewController = n
     NSLog(@"%d",[dataList count]);
     for (NSDictionary *dic in dataList)
     {
+
         [idsArray addObject:[dic objectForKey:@"classid"]];
-        //一下根据要显示的数据修改KEY，一般是一行显示两个，key对应文档中的字段。下面代码所有类似的部分都要修改
         [objectsArray addObject:[dic objectForKey:@"classname"]];
     }
-    NSArray *pageInfoArray=[[NSArray alloc] initWithArray:[initDic objectForKey:@"page"]];
-    NSDictionary *pageInfo=[[NSDictionary alloc] initWithDictionary:[pageInfoArray objectAtIndex:0]];
+    NSLog(@"%d %d",[idsArray count],[objectsArray count]);
     [self.tableView reloadData];
 }
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -113,10 +113,11 @@ static HaishijuZfxxChildViewController *shareHaishijuZfxxChildViewController = n
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSLog(@"%@ %@",[idsArray objectAtIndex:indexPath.row],[objectsArray objectAtIndex:indexPath.row]);
     HaishijuZfxxListViewController *zfxxListViewController=[HaishijuZfxxListViewController shareHaishijuZfxxListViewController];
     [self.navigationController pushViewController:zfxxListViewController animated:YES];
-    [zfxxListViewController.listTitle setText:@"信息公开年报表"];
-    [zfxxListViewController loadListBy:@"81"];
+    [zfxxListViewController.listTitle setText:[NSString stringWithFormat:@"%@",[objectsArray objectAtIndex:indexPath.row]]];
+    [zfxxListViewController loadListBy:[idsArray objectAtIndex:indexPath.row]];
 }
 - (void)didReceiveMemoryWarning
 {

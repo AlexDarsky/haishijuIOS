@@ -14,12 +14,14 @@
 
 @implementation HaishijuRequisitionFirstViewController
 @synthesize customNavBar,tableView;
+@synthesize userAdress,userChuanzhen,userDanwei,userEmail,userName,userNumber,credNumber,credType,zipCode;
+@synthesize orgAdress,orgCode,orgConChuanzhen,orgConName,orgConNumber,orgCorpo,orgEmail,orgName,applyDate;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-    }
+            }
     return self;
 }
 
@@ -27,6 +29,12 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.navigationController.navigationBarHidden=YES;
+    self.tableView.backgroundColor=[UIColor clearColor];
+    self.customNavBar.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"homeNavBar"]];
+    self.view.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"listViewBG"]];
+    userType=0;
+
 }
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -60,66 +68,120 @@
     // static NSString *cellIdentifier = @"MyCell";
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+    UIFont *font = [UIFont fontWithName:@"Arial" size:15];
     switch (userType) {
         case 0:
         {
             switch (indexPath.row) {
                 case 0:
                 {
-                    
+                    self.userName=[[UITextField alloc] initWithFrame:CGRectMake(20, 10, 280, 30)];
+                    self.userName.placeholder=@" 请输入姓名";
+                    self.userName.borderStyle = UITextBorderStyleRoundedRect;
+                    self.userName.font=font;
+                    [self.userName addTarget:self action:@selector(textFiledReturnEditing:) forControlEvents:UIControlEventEditingDidEndOnExit];
+                    [cell addSubview:self.userName];
                 }
                     break;
                 case 1:
                 {
-                    
+                    self.userDanwei=[[UITextField alloc] initWithFrame:CGRectMake(20, 10, 280, 30)];
+                    self.userDanwei.placeholder=@" 请输入工作单位";
+                    self.userDanwei.borderStyle = UITextBorderStyleRoundedRect;
+                    self.userDanwei.font=font;
+                    [self.userDanwei addTarget:self action:@selector(textFiledReturnEditing:) forControlEvents:UIControlEventEditingDidEndOnExit];
+                    [cell addSubview:self.userDanwei];
                 }
                     break;
                 case 2:
                 {
-                    
+                    self.credType=[[UITextField alloc] initWithFrame:CGRectMake(20, 10, 280, 30)];
+                    self.credType.placeholder=@" 请输入证件名称";
+                    self.credType.borderStyle = UITextBorderStyleRoundedRect;
+                    self.credType.font=font;
+                    [self.credType addTarget:self action:@selector(textFiledReturnEditing:) forControlEvents:UIControlEventEditingDidEndOnExit];
+                    [cell addSubview:self.credType];
                 }
                     break;
                 case 3:
                 {
-                    
+                    self.credNumber=[[UITextField alloc] initWithFrame:CGRectMake(20, 10, 280, 30)];
+                    self.credNumber.placeholder=@" 请输入证件号码";
+                    self.credNumber.borderStyle = UITextBorderStyleRoundedRect;
+                    self.credNumber.font=font;
+                    [self.credNumber addTarget:self action:@selector(textFiledReturnEditing:) forControlEvents:UIControlEventEditingDidEndOnExit];
+                    [cell addSubview:self.credNumber];
                 }
                     break;
                 case 4:
                 {
-                    
+                    self.userNumber=[[UITextField alloc] initWithFrame:CGRectMake(20, 10, 280, 30)];
+                    self.userNumber.placeholder=@" 请输入联系电话";
+                    self.userNumber.borderStyle = UITextBorderStyleRoundedRect;
+                    self.userNumber.font=font;
+                    [self.userNumber addTarget:self action:@selector(textFiledReturnEditing:) forControlEvents:UIControlEventEditingDidEndOnExit];
+                    [cell addSubview:self.userNumber];
                 }
                     break;
                 case 5:
                 {
-                    
+                    self.userChuanzhen=[[UITextField alloc] initWithFrame:CGRectMake(20, 10, 280, 30)];
+                    self.userChuanzhen.placeholder=@" 请输入传真";
+                    self.userChuanzhen.borderStyle = UITextBorderStyleRoundedRect;
+                    self.userChuanzhen.font=font;
+                    [self.userChuanzhen addTarget:self action:@selector(textFiledReturnEditing:) forControlEvents:UIControlEventEditingDidEndOnExit];
+                    [cell addSubview:self.userChuanzhen];
                 }
                     break;
                 case 6:
                 {
-                    
+                    self.userEmail=[[UITextField alloc] initWithFrame:CGRectMake(20, 10, 280, 30)];
+                    self.userEmail.placeholder=@" 请输入电子邮箱";
+                    self.userEmail.borderStyle = UITextBorderStyleRoundedRect;
+                    self.userEmail.font=font;
+                    [self.userEmail addTarget:self action:@selector(textFiledReturnEditing:) forControlEvents:UIControlEventEditingDidEndOnExit];
+                    [cell addSubview:self.userEmail];
                 }
                     break;
                 case 7:
                 {
-                    
+                    self.zipCode=[[UITextField alloc] initWithFrame:CGRectMake(20, 10, 280, 30)];
+                    self.zipCode.placeholder=@" 请输入邮政编码";
+                    self.zipCode.borderStyle = UITextBorderStyleRoundedRect;
+                    self.zipCode.font=font;
+                    [self.zipCode addTarget:self action:@selector(textFiledReturnEditing:) forControlEvents:UIControlEventEditingDidEndOnExit];
+                    [cell addSubview:self.zipCode];
                 }
                     break;
                 case 8:
                 {
-                    
+                    self.userAdress=[[UITextField alloc] initWithFrame:CGRectMake(20, 10, 280, 30)];
+                    self.userAdress.placeholder=@" 请输入联系地址";
+                    self.userAdress.borderStyle = UITextBorderStyleRoundedRect;
+                    self.userAdress.font=font;
+                    [self.userAdress addTarget:self action:@selector(textFiledReturnEditing:) forControlEvents:UIControlEventEditingDidEndOnExit];
+                    [cell addSubview:self.userAdress];
                 }
                     break;
                 case 9:
                 {
-                    
+                    self.applyDate=[[UITextField alloc] initWithFrame:CGRectMake(20, 10, 280, 30)];
+                    self.applyDate.placeholder=@" 请输入申请时间(如:2012年01月01日)";
+                    self.applyDate.borderStyle = UITextBorderStyleRoundedRect;
+                    self.applyDate.font=font;
+                    [self.applyDate addTarget:self action:@selector(textFiledReturnEditing:) forControlEvents:UIControlEventEditingDidEndOnExit];
+                    [cell addSubview:self.applyDate];
                 }
                     break;
                 case 10:
                 {
-                    
+                    UIButton *submitBtn=[UIButton buttonWithType:UIButtonTypeRoundedRect];
+                    submitBtn.frame=CGRectMake(40, 15, 240, 30);
+                    [submitBtn setTitle:@"提交" forState:UIControlStateNormal];
+                    [submitBtn addTarget:self action:@selector(submitFirstInfo:) forControlEvents:UIControlEventTouchUpInside];
+                    [cell addSubview:submitBtn];
                 }
                     break;
-                    
             }
         }
             break;
@@ -128,57 +190,110 @@
             switch (indexPath.row) {
                 case 0:
                 {
-                    
+                    self.orgName=[[UITextField alloc] initWithFrame:CGRectMake(20, 10, 280, 30)];
+                    self.orgName.placeholder=@" 请输入名称";
+                    self.orgName.borderStyle = UITextBorderStyleRoundedRect;
+                    self.orgName.font=font;
+                    [self.orgName addTarget:self action:@selector(textFiledReturnEditing:) forControlEvents:UIControlEventEditingDidEndOnExit];
+
+                    [cell addSubview:self.orgName];
                 }
                     break;
                 case 1:
                 {
-                    
+                    self.orgCode=[[UITextField alloc] initWithFrame:CGRectMake(20, 10, 280, 30)];
+                    self.orgCode.placeholder=@" 请输入组织机构代码";
+                    self.orgCode.borderStyle = UITextBorderStyleRoundedRect;
+                    self.orgCode.font=font;
+                    [self.orgCode addTarget:self action:@selector(textFiledReturnEditing:) forControlEvents:UIControlEventEditingDidEndOnExit];
+
+                    [cell addSubview:self.orgCode];
                 }
                     break;
                 case 2:
                 {
-                    
+                    self.orgCorpo=[[UITextField alloc] initWithFrame:CGRectMake(20, 10, 280, 30)];
+                    self.orgCorpo.placeholder=@" 请输入法定代表人";
+                    self.orgCorpo.borderStyle = UITextBorderStyleRoundedRect;
+                    self.orgCorpo.font=font;
+                    [self.orgCorpo addTarget:self action:@selector(textFiledReturnEditing:) forControlEvents:UIControlEventEditingDidEndOnExit];
+
+                    [cell addSubview:self.orgCorpo];
                 }
                     break;
                 case 3:
                 {
-                    
+                    self.orgConName=[[UITextField alloc] initWithFrame:CGRectMake(20, 10, 280, 30)];
+                    self.orgConName.placeholder=@" 请输入联系人姓名";
+                    self.orgConName.borderStyle = UITextBorderStyleRoundedRect;
+                    self.orgConName.font=font;
+                    [self.orgConName addTarget:self action:@selector(textFiledReturnEditing:) forControlEvents:UIControlEventEditingDidEndOnExit];
+
+                    [cell addSubview:self.orgConName];
                 }
                     break;
                 case 4:
                 {
-                    
+                    self.orgConNumber=[[UITextField alloc] initWithFrame:CGRectMake(20, 10, 280, 30)];
+                    self.orgConNumber.placeholder=@" 请输入联系人电话";
+                    self.orgConNumber.borderStyle = UITextBorderStyleRoundedRect;
+                    self.orgConNumber.font=font;
+                    [self.orgConNumber addTarget:self action:@selector(textFiledReturnEditing:) forControlEvents:UIControlEventEditingDidEndOnExit];
+
+                    [cell addSubview:self.orgConNumber];
                 }
                     break;
                 case 5:
                 {
-                    
+                    self.orgConChuanzhen=[[UITextField alloc] initWithFrame:CGRectMake(20, 10, 280, 30)];
+                    self.orgConChuanzhen.placeholder=@" 请输入传真";
+                    self.orgConChuanzhen.borderStyle = UITextBorderStyleRoundedRect;
+                    self.orgConChuanzhen.font=font;
+                    [self.orgConChuanzhen addTarget:self action:@selector(textFiledReturnEditing:) forControlEvents:UIControlEventEditingDidEndOnExit];
+
+                    [cell addSubview:self.orgConChuanzhen];
                 }
                     break;
                 case 6:
                 {
-                    
+                    self.orgAdress=[[UITextField alloc] initWithFrame:CGRectMake(20, 10, 280, 30)];
+                    self.orgAdress.placeholder=@" 请输入联系地址";
+                    self.orgAdress.borderStyle = UITextBorderStyleRoundedRect;
+                    self.orgAdress.font=font;
+                    [self.orgAdress addTarget:self action:@selector(textFiledReturnEditing:) forControlEvents:UIControlEventEditingDidEndOnExit];
+
+                    [cell addSubview:self.orgAdress];
                 }
                     break;
                 case 7:
                 {
-                    
+                    self.orgEmail=[[UITextField alloc] initWithFrame:CGRectMake(20, 10, 280, 30)];
+                    self.orgEmail.placeholder=@" 请输入电子邮箱";
+                    self.orgEmail.borderStyle = UITextBorderStyleRoundedRect;
+                    self.orgEmail.font=font;
+                    [self.orgEmail addTarget:self action:@selector(textFiledReturnEditing:) forControlEvents:UIControlEventEditingDidEndOnExit];
+
+                    [cell addSubview:self.orgEmail];
                 }
                     break;
                 case 8:
                 {
-                    
+                    self.applyDate=[[UITextField alloc] initWithFrame:CGRectMake(20, 10, 280, 30)];
+                    self.applyDate.placeholder=@" 请输入申请时间(如:2012年01月01日)";
+                    self.applyDate.borderStyle = UITextBorderStyleRoundedRect;
+                    self.applyDate.font=font;
+                    [self.applyDate addTarget:self action:@selector(textFiledReturnEditing:) forControlEvents:UIControlEventEditingDidEndOnExit];
+
+                    [cell addSubview:self.applyDate];
                 }
                     break;
                 case 9:
                 {
-                    
-                }
-                    break;
-                case 10:
-                {
-                    
+                    UIButton *submitBtn=[UIButton buttonWithType:UIButtonTypeRoundedRect];
+                    submitBtn.frame=CGRectMake(40, 15, 240, 30);
+                    [submitBtn setTitle:@"提交" forState:UIControlStateNormal];
+                    [submitBtn addTarget:self action:@selector(submitFirstInfo:) forControlEvents:UIControlEventTouchUpInside];
+                    [cell addSubview:submitBtn];
                 }
                     break;
                     
@@ -188,7 +303,49 @@
     }
     return cell;
 }
-
+-(void)submitFirstInfo:(id)sender
+{
+    switch (userType) {
+        case 0:
+        {
+            if ([self.userName.text isEqualToString:@""]||[self.userDanwei.text isEqualToString:@""]||[self.credType.text isEqualToString:@""]||[self.credNumber.text isEqualToString:@""]||[self.userNumber.text isEqualToString:@""]||[self.userChuanzhen.text isEqualToString:@""]||[self.userEmail.text isEqualToString:@""]||[self.zipCode.text isEqualToString:@""]||[self.userAdress.text isEqualToString:@""]||[self.applyDate.text isEqualToString:@""])
+            {
+                UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"错误" message:@"请填写完您的信息" delegate:nil cancelButtonTitle:@"好的" otherButtonTitles: nil];
+                [alert show];
+            }else
+            {
+                NSString *firstInfo=[NSString stringWithFormat:@"申请人信息：公民 姓名 ：%@ ； 工作单位 ：%@ ； 证件名称 ：%@ ； 证件号码 ：%@ ； 联系电话 ：%@ ； 传真 ：%@ ； 电子邮箱 ：%@ ； 邮政编码 ：%@ ； 联系地址 ：%@ ； 申请时间 ：%@ ；",self.userName.text,self.userDanwei.text,self.credType.text,self.credNumber.text,self.userNumber.text,self.userChuanzhen.text,self.userEmail.text,self.zipCode.text,self.userAdress.text,self.applyDate.text];
+                NSLog(@"firstInfo is %@",firstInfo);
+                
+            }
+        }
+            break;
+        case 1:
+        {
+            if ([self.userName.text isEqualToString:@""]||[self.userDanwei.text isEqualToString:@""]||[self.credType.text isEqualToString:@""]||[self.credNumber.text isEqualToString:@""]||[self.userNumber.text isEqualToString:@""]||[self.userChuanzhen.text isEqualToString:@""]||[self.userEmail.text isEqualToString:@""]||[self.zipCode.text isEqualToString:@""]||[self.userAdress.text isEqualToString:@""]||[self.applyDate.text isEqualToString:@""])
+            {
+                UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"错误" message:@"请填写完您的信息" delegate:nil cancelButtonTitle:@"好的" otherButtonTitles: nil];
+                [alert show];
+            }else
+            {
+                NSString *firstInfo=[NSString stringWithFormat:@"申请人信息：法人其他区组织 名称 ：%@ ； 组织机构代码 ：%@ ； 法定代表人 ：%@ ； 联系人姓名：%@ ； 联系人电话 ：%@ ； 传真 ：%@ ； 联系地址 ：%@ ； 电子邮箱 ：%@ ；申请时间 ：%@ ；",self.orgName.text,self.orgCode.text,self.orgCorpo.text,self.orgConName.text,self.orgConNumber.text,self.orgConChuanzhen.text,self.orgAdress.text,self.orgEmail.text,self.applyDate.text];
+                NSLog(@"firstInfo is %@",firstInfo);
+                
+            }
+        }
+            break;
+    }
+}
+-(void)textFiledReturnEditing:(id)sender {
+    [sender resignFirstResponder];
+}
+-(IBAction)changeUserType:(UISegmentedControl *)Seg
+{
+ NSInteger Index = Seg.selectedSegmentIndex;
+    NSLog(@"%d",Index);
+    userType=Index;
+    [self.tableView reloadData];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

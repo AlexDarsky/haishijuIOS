@@ -17,7 +17,7 @@
 
 @implementation HaishijuZfxxViewController
 @synthesize tableView,customNavBar,alert;
-@synthesize zfxxListViewController;
+@synthesize zfxxListViewController,requisitionFirstViewController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -38,11 +38,14 @@
     if ([[UIScreen mainScreen] bounds].size.height>480.00)
     {
            self.zfxxListViewController=[[HaishijuZfxxListViewController alloc] initWithNibName:@"HaishijuZfxxListViewController_4" bundle:nil];
+            self.requisitionFirstViewController=[[HaishijuRequisitionFirstViewController alloc] initWithNibName:@"HaishijuRequisitionFirstViewController_4" bundle:nil];
     }
     else
     {
                    self.zfxxListViewController=[[HaishijuZfxxListViewController alloc] initWithNibName:@"HaishijuZfxxListViewController" bundle:nil];
+            self.requisitionFirstViewController=[[HaishijuRequisitionFirstViewController alloc] initWithNibName:@"HaishijuRequisitionFirstViewController" bundle:nil];
     }
+
     //根据接口文档改写一下数组路面的objects，以下分别对应文档中的中文说明和字段
     self.navigationController.navigationBarHidden=YES;
     self.customNavBar.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"homeNavBar"]];
@@ -63,7 +66,7 @@
             break;
         case 1:
         {
-            number=10;
+            number=9;
         }
             break;
         case 2:
@@ -73,7 +76,7 @@
             break;
         case 3:
         {
-            number=1;
+            number=3;
         }
             break;
     }
@@ -84,9 +87,20 @@
     return [objectsArray count];
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    return [NSString stringWithFormat:@"%@",[objectsArray objectAtIndex:section]];
+}
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+
     return 50;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if (section==0) {
+        return 0;
+    }else
+        return 30;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -112,13 +126,11 @@
             switch (indexPath.row) {
                 case 0:
                 {
-                    UIFont *font = [UIFont fontWithName:@"Arial" size:16];
                     UILabel *firstTitle=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, cell.frame.size.width,  cell.frame.size.height)];
                     firstTitle.backgroundColor=[UIColor clearColor];
-                    firstTitle.font=font;
-                    firstTitle.text=[NSString stringWithFormat:@"  %@",[objectsArray objectAtIndex:indexPath.section]];
+                    firstTitle.font= [UIFont fontWithName:@"Arial" size:14];
+                    firstTitle.text=[NSString stringWithFormat:@"        %@",[muluArray objectAtIndex:indexPath.row]];
                     [cell addSubview:firstTitle];
-
                 }
                     break;
                 case 1:
@@ -126,7 +138,7 @@
                     UILabel *firstTitle=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, cell.frame.size.width,  cell.frame.size.height)];
                     firstTitle.backgroundColor=[UIColor clearColor];
                     firstTitle.font= [UIFont fontWithName:@"Arial" size:14];
-                    firstTitle.text=[NSString stringWithFormat:@"        %@",[muluArray objectAtIndex:indexPath.row-1]];
+                    firstTitle.text=[NSString stringWithFormat:@"        %@",[muluArray objectAtIndex:indexPath.row]];
                     [cell addSubview:firstTitle];
                 }
                     break;
@@ -135,7 +147,7 @@
                     UILabel *firstTitle=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, cell.frame.size.width,  cell.frame.size.height)];
                     firstTitle.backgroundColor=[UIColor clearColor];
                     firstTitle.font= [UIFont fontWithName:@"Arial" size:14];
-                    firstTitle.text=[NSString stringWithFormat:@"        %@",[muluArray objectAtIndex:indexPath.row-1]];
+                    firstTitle.text=[NSString stringWithFormat:@"        %@",[muluArray objectAtIndex:indexPath.row]];
                     [cell addSubview:firstTitle];
                 }
                     break;
@@ -144,7 +156,7 @@
                     UILabel *firstTitle=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, cell.frame.size.width,  cell.frame.size.height)];
                     firstTitle.backgroundColor=[UIColor clearColor];
                     firstTitle.font= [UIFont fontWithName:@"Arial" size:14];
-                    firstTitle.text=[NSString stringWithFormat:@"        %@",[muluArray objectAtIndex:indexPath.row-1]];
+                    firstTitle.text=[NSString stringWithFormat:@"        %@",[muluArray objectAtIndex:indexPath.row]];
                     [cell addSubview:firstTitle];
                 }
                     break;
@@ -153,7 +165,7 @@
                     UILabel *firstTitle=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, cell.frame.size.width,  cell.frame.size.height)];
                     firstTitle.backgroundColor=[UIColor clearColor];
                     firstTitle.font= [UIFont fontWithName:@"Arial" size:14];
-                    firstTitle.text=[NSString stringWithFormat:@"        %@",[muluArray objectAtIndex:indexPath.row-1]];
+                    firstTitle.text=[NSString stringWithFormat:@"        %@",[muluArray objectAtIndex:indexPath.row]];
                     [cell addSubview:firstTitle];
                 }
                     break;
@@ -162,7 +174,7 @@
                     UILabel *firstTitle=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, cell.frame.size.width,  cell.frame.size.height)];
                     firstTitle.backgroundColor=[UIColor clearColor];
                     firstTitle.font= [UIFont fontWithName:@"Arial" size:14];
-                    firstTitle.text=[NSString stringWithFormat:@"        %@",[muluArray objectAtIndex:indexPath.row-1]];
+                    firstTitle.text=[NSString stringWithFormat:@"        %@",[muluArray objectAtIndex:indexPath.row]];
                     [cell addSubview:firstTitle];
                 }
                     break;
@@ -171,7 +183,7 @@
                     UILabel *firstTitle=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, cell.frame.size.width,  cell.frame.size.height)];
                     firstTitle.backgroundColor=[UIColor clearColor];
                     firstTitle.font= [UIFont fontWithName:@"Arial" size:14];
-                    firstTitle.text=[NSString stringWithFormat:@"        %@",[muluArray objectAtIndex:indexPath.row-1]];
+                    firstTitle.text=[NSString stringWithFormat:@"        %@",[muluArray objectAtIndex:indexPath.row]];
                     [cell addSubview:firstTitle];
                 }
                     break;
@@ -180,7 +192,7 @@
                     UILabel *firstTitle=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, cell.frame.size.width,  cell.frame.size.height)];
                     firstTitle.backgroundColor=[UIColor clearColor];
                     firstTitle.font= [UIFont fontWithName:@"Arial" size:14];
-                    firstTitle.text=[NSString stringWithFormat:@"        %@",[muluArray objectAtIndex:indexPath.row-1]];
+                    firstTitle.text=[NSString stringWithFormat:@"        %@",[muluArray objectAtIndex:indexPath.row]];
                     [cell addSubview:firstTitle];
                 }
                     break;
@@ -189,16 +201,7 @@
                     UILabel *firstTitle=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, cell.frame.size.width,  cell.frame.size.height)];
                     firstTitle.backgroundColor=[UIColor clearColor];
                     firstTitle.font= [UIFont fontWithName:@"Arial" size:14];
-                    firstTitle.text=[NSString stringWithFormat:@"        %@",[muluArray objectAtIndex:indexPath.row-1]];
-                    [cell addSubview:firstTitle];
-                }
-                    break;
-                case 9:
-                {
-                    UILabel *firstTitle=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, cell.frame.size.width,  cell.frame.size.height)];
-                    firstTitle.backgroundColor=[UIColor clearColor];
-                    firstTitle.font= [UIFont fontWithName:@"Arial" size:14];
-                    firstTitle.text=[NSString stringWithFormat:@"        %@",[muluArray objectAtIndex:indexPath.row-1]];
+                    firstTitle.text=[NSString stringWithFormat:@"        %@",[muluArray objectAtIndex:indexPath.row]];
                     [cell addSubview:firstTitle];
                 }
                     break;
@@ -220,12 +223,38 @@
             break;
         case 3:
         {
-            UIFont *font = [UIFont fontWithName:@"Arial" size:16];
-            UILabel *firstTitle=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, cell.frame.size.width,  cell.frame.size.height)];
-            firstTitle.backgroundColor=[UIColor clearColor];
-            firstTitle.font=font;
-            firstTitle.text=[NSString stringWithFormat:@"  %@",[objectsArray objectAtIndex:indexPath.section]];
-            [cell addSubview:firstTitle];
+            switch (indexPath.row) {
+                case 0:
+                {
+                    UIFont *font = [UIFont fontWithName:@"Arial" size:16];
+                    UILabel *firstTitle=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, cell.frame.size.width,  cell.frame.size.height)];
+                    firstTitle.backgroundColor=[UIColor clearColor];
+                    firstTitle.font=font;
+                    firstTitle.text=[NSString stringWithFormat:@"  申请指南"];
+                    [cell addSubview:firstTitle];
+                }
+                    break;
+                case 1:
+                {
+                    UIFont *font = [UIFont fontWithName:@"Arial" size:16];
+                    UILabel *firstTitle=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, cell.frame.size.width,  cell.frame.size.height)];
+                    firstTitle.backgroundColor=[UIColor clearColor];
+                    firstTitle.font=font;
+                    firstTitle.text=[NSString stringWithFormat:@"  在线申请"];
+                    [cell addSubview:firstTitle];
+                }
+                    break;
+                case 2:
+                {
+                    UIFont *font = [UIFont fontWithName:@"Arial" size:16];
+                    UILabel *firstTitle=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, cell.frame.size.width,  cell.frame.size.height)];
+                    firstTitle.backgroundColor=[UIColor clearColor];
+                    firstTitle.font=font;
+                    firstTitle.text=[NSString stringWithFormat:@"  受理情况"];
+                    [cell addSubview:firstTitle];
+                }
+                    break;
+            }
 
         }
             break;
@@ -257,53 +286,49 @@
             switch (indexPath.row) {
                 case 0:
                 {
+
+                    UIActionSheet *actionSheet=[[UIActionSheet alloc] initWithTitle:@"选择栏目" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"组织机构",@"领导动态", nil];
+                    actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
+                    [actionSheet showInView:self.view];
                     
                 }
                     break;
                 case 1:
                 {
                     [self.navigationController pushViewController:self.zfxxListViewController animated:YES];
-                    [self.zfxxListViewController.listTitle setText:@"组织机构"];
-                    [self.zfxxListViewController loadListBy:@"5"];
-                    
-                }
-                    break;
-                case 2:
-                {
-                    [self.navigationController pushViewController:self.zfxxListViewController animated:YES];
                     [self.zfxxListViewController.listTitle setText:@"海事行政处罚"];
                     [self.zfxxListViewController loadListBy:@"8"];
                 }
                     break;
-                case 3:
+                case 2:
                 {
                     HaishijuZfxxChildViewController *zfxxChildViewController=[HaishijuZfxxChildViewController shareHaishijuZfxxChildViewController];
                     [self.navigationController pushViewController:zfxxChildViewController animated:YES];
                     [zfxxChildViewController loadListByParentID:@"10"];
                 }
                     break;
-                case 4:
+                case 3:
                 {
                     [self.navigationController pushViewController:self.zfxxListViewController animated:YES];
                     [self.zfxxListViewController.listTitle setText:@"干部任免"];
                     [self.zfxxListViewController loadListBy:@"675"];
                 }
                     break;
-                case 5:
+                case 4:
                 {
                     [self.navigationController pushViewController:self.zfxxListViewController animated:YES];
                     [self.zfxxListViewController.listTitle setText:@"人事管理"];
                     [self.zfxxListViewController loadListBy:@"12"];
                 }
                     break;
-                case 6:
+                case 5:
                 {
                     [self.navigationController pushViewController:self.zfxxListViewController animated:YES];
                     [self.zfxxListViewController.listTitle setText:@"年度计划"];
                     [self.zfxxListViewController loadListBy:@"676"];
                 }
                     break;
-                case 7:
+                case 6:
                 {
                     HaishijuZfxxDetailViewController *zfxxDetailViewController=[HaishijuZfxxDetailViewController shareHaishijuZfxxDetailViewController];
                     [self.navigationController pushViewController:zfxxDetailViewController animated:YES];
@@ -311,7 +336,7 @@
 
                 }
                     break;
-                case 8:
+                case 7:
                 {
                     HaishijuZfxxDetailViewController *zfxxDetailViewController=[HaishijuZfxxDetailViewController shareHaishijuZfxxDetailViewController];
                     [self.navigationController pushViewController:zfxxDetailViewController animated:YES];
@@ -319,7 +344,7 @@
 
                 }
                     break;
-                case 9:
+                case 8:
                 {
                     HaishijuZfxxDetailViewController *zfxxDetailViewController=[HaishijuZfxxDetailViewController shareHaishijuZfxxDetailViewController];
                     [self.navigationController pushViewController:zfxxDetailViewController animated:YES];
@@ -339,11 +364,52 @@
             break;
         case 3:
         {
-            
+            switch (indexPath.row) {
+                case 0:
+                {
+                    HaishijuZfxxDetailViewController *zfxxDetailViewController=[HaishijuZfxxDetailViewController shareHaishijuZfxxDetailViewController];
+                    [self.navigationController pushViewController:zfxxDetailViewController animated:YES];
+                    [zfxxDetailViewController loadInfoBySendRequest:@"18732"];
+                }
+                    break;
+                case 1:
+                {
+                    [self.navigationController pushViewController:self.requisitionFirstViewController animated:YES];
+                }
+                    break;
+                case 2:
+                {
+                    [self.navigationController pushViewController:self.zfxxListViewController animated:YES];
+                    [self.zfxxListViewController.listTitle setText:@"受理情况"];
+                    [self.zfxxListViewController loadListBy:@"804"];
+                }
+                    break;
+            }
         }
             break;
     }
 
+}
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    switch (buttonIndex) {
+        case 0:{
+                [self.navigationController pushViewController:self.zfxxListViewController animated:YES];
+                [self.zfxxListViewController.listTitle setText:@"组织机构"];
+                [self.zfxxListViewController loadListBy:@"5"];
+
+        }
+            break;
+            
+            case 1:
+        {
+            HaishijuZfxxChildViewController *zfxxChildViewController=[HaishijuZfxxChildViewController shareHaishijuZfxxChildViewController];
+            [self.navigationController pushViewController:zfxxChildViewController animated:YES];
+            [zfxxChildViewController loadListByParentID:@"5"];
+        }
+            break;
+            
+    }
 }
 - (void)didReceiveMemoryWarning
 {

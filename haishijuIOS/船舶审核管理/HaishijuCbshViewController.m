@@ -686,9 +686,11 @@
                 [button4 setTitle:[NSString stringWithFormat:@"%d",currentPage+3] forState:UIControlStateNormal];
                 [button5 setTitle:[NSString stringWithFormat:@"%d",totalPage] forState:UIControlStateNormal];
                 button1.hidden=button2.hidden=button3.hidden=button4.hidden=button5.hidden=NO;
+                button5.frame=CGRectMake(187, 379, button5.frame.size.width, button5.frame.size.height);
                 buttonMore.hidden=YES;
                 
             }
+            
         }
             break;
         default:
@@ -700,8 +702,9 @@
                 [button3 setTitle:[NSString stringWithFormat:@"%d",currentPage+2] forState:UIControlStateNormal];
                 [button4 setTitle:[NSString stringWithFormat:@"%d",currentPage+3] forState:UIControlStateNormal];
                 [button5 setTitle:[NSString stringWithFormat:@"%d",totalPage] forState:UIControlStateNormal];
+                button5.frame=CGRectMake(215, 379, button5.frame.size.width, button5.frame.size.height);
                 button1.hidden=button2.hidden=button3.hidden=button4.hidden=button5.hidden=buttonMore.hidden=NO;
-
+                
                 
             }else
             {
@@ -713,7 +716,7 @@
                         [button2 setTitle:[NSString stringWithFormat:@"%d",totalPage] forState:UIControlStateNormal];
                         button1.hidden=button2.hidden=NO;
                         button3.hidden=button4.hidden=button5.hidden=buttonMore.hidden=YES;
-
+                        
                     }
                         break;
                     case 2:
@@ -723,7 +726,7 @@
                         [button3 setTitle:[NSString stringWithFormat:@"%d",totalPage] forState:UIControlStateNormal];
                         button1.hidden=button2.hidden=button3.hidden=NO;
                         button4.hidden=button5.hidden=buttonMore.hidden=YES;
-
+                        
                     }
                         break;
                     case 3:
@@ -734,7 +737,7 @@
                         [button4 setTitle:[NSString stringWithFormat:@"%d",totalPage] forState:UIControlStateNormal];
                         button1.hidden=button2.hidden=button3.hidden=button4.hidden=NO;
                         button5.hidden=buttonMore.hidden=YES;
-
+                        
                     }
                         break;
                     case 4:
@@ -745,8 +748,9 @@
                         [button4 setTitle:[NSString stringWithFormat:@"%d",currentPage+3] forState:UIControlStateNormal];
                         [button5 setTitle:[NSString stringWithFormat:@"%d",totalPage] forState:UIControlStateNormal];
                         button1.hidden=button2.hidden=button3.hidden=button4.hidden=button5.hidden=NO;
+                        button5.frame=CGRectMake(187, 379, button5.frame.size.width, button5.frame.size.height);
                         buttonMore.hidden=YES;
-
+                        
                     }
                         break;
                     default:
@@ -760,11 +764,11 @@
                 }
                 
             }
-                        
+            
         }
             break;
     }
-
+    
 }
 -(void)pushAction:(id)sender
 {

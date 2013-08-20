@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "MLTableAlert.h"
 #import "HaishijuZfxxListViewController.h"
-@interface HaishijuZfxxViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
+#import "HaishijuRequisitionFirstViewController.h"
+@interface HaishijuZfxxViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate>
 {
     NSMutableArray *objectsArray;
     NSMutableArray *muluArray;
@@ -20,6 +21,7 @@
 @property (strong, nonatomic) MLTableAlert *alert;
 @property (weak, nonatomic) IBOutlet UIView *customNavBar;
 @property (strong,nonatomic) HaishijuZfxxListViewController *zfxxListViewController;
+@property (strong,nonatomic) HaishijuRequisitionFirstViewController *requisitionFirstViewController;
 
 
 
