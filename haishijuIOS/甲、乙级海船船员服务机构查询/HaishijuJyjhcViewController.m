@@ -162,7 +162,7 @@
                 [idsArray addObject:[dic objectForKey:@"ID"]];
                 [chuanmingsArray addObject:[dic objectForKey:@"jigou"]];
                 [chuanjigangsArray addObject:[dic objectForKey:@"zhucedi"]];
-                        }
+            }
             [self.tableView reloadData];
             }
         }
@@ -533,7 +533,6 @@
               //  [gongsisArray addObject:[dic objectForKey:@"GongSi"]];
             }
             [self.tableView reloadData];
-            
         }
 
     }
@@ -622,9 +621,6 @@
         [self setButtonsByTotalPage:totalPage];
         button1.selected=YES;
         selectBtnIndex=1;
-        
-        button1.selected=YES;
-        button2.selected=button3.selected=button4.selected=button5.selected=NO;
         [self.tableView reloadData];
     }
     
@@ -656,7 +652,7 @@
             [button2 setTitle:[NSString stringWithFormat:@"%d",currentPage+1] forState:UIControlStateNormal];
             [button3 setTitle:[NSString stringWithFormat:@"%d",totalPage] forState:UIControlStateNormal];
             button1.hidden=button2.hidden=button3.hidden=NO;
-            button4.hidden=button5.hidden=buttonMore.hidden==YES;
+            button4.hidden=button5.hidden=buttonMore.hidden=YES;
         }
             break;
         case 4:

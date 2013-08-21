@@ -16,6 +16,7 @@
 @synthesize customNavBar,tableView;
 @synthesize userAdress,userChuanzhen,userDanwei,userEmail,userName,userNumber,credNumber,credType,zipCode;
 @synthesize orgAdress,orgCode,orgConChuanzhen,orgConName,orgConNumber,orgCorpo,orgEmail,orgName,applyDate;
+@synthesize requisitionChildViewController;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -34,6 +35,7 @@
     self.customNavBar.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"homeNavBar"]];
     self.view.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"listViewBG"]];
     userType=0;
+    self.requisitionChildViewController=[[HaishijuRequisitionChildViewController alloc] init];
 
 }
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -308,28 +310,30 @@
     switch (userType) {
         case 0:
         {
-            if ([self.userName.text isEqualToString:@""]||[self.userDanwei.text isEqualToString:@""]||[self.credType.text isEqualToString:@""]||[self.credNumber.text isEqualToString:@""]||[self.userNumber.text isEqualToString:@""]||[self.userChuanzhen.text isEqualToString:@""]||[self.userEmail.text isEqualToString:@""]||[self.zipCode.text isEqualToString:@""]||[self.userAdress.text isEqualToString:@""]||[self.applyDate.text isEqualToString:@""])
+            if ([self.userName.text isEqualToString:@""]||self.userName==nil||[self.userDanwei.text isEqualToString:@""]||self.userDanwei==nil||[self.credType.text isEqualToString:@""]||self.credType==nil||[self.credNumber.text isEqualToString:@""]||self.credNumber==nil||[self.userNumber.text isEqualToString:@""]||self.userNumber==nil||[self.userChuanzhen.text isEqualToString:@""]||self.userChuanzhen==nil||[self.userEmail.text isEqualToString:@""]||self.userEmail==nil||[self.zipCode.text isEqualToString:@""]||self.zipCode==nil||[self.userAdress.text isEqualToString:@""]||self.userAdress==nil||[self.applyDate.text isEqualToString:@""]||self.applyDate==nil)
             {
                 UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"错误" message:@"请填写完您的信息" delegate:nil cancelButtonTitle:@"好的" otherButtonTitles: nil];
                 [alert show];
             }else
             {
                 NSString *firstInfo=[NSString stringWithFormat:@"申请人信息：公民 姓名 ：%@ ； 工作单位 ：%@ ； 证件名称 ：%@ ； 证件号码 ：%@ ； 联系电话 ：%@ ； 传真 ：%@ ； 电子邮箱 ：%@ ； 邮政编码 ：%@ ； 联系地址 ：%@ ； 申请时间 ：%@ ；",self.userName.text,self.userDanwei.text,self.credType.text,self.credNumber.text,self.userNumber.text,self.userChuanzhen.text,self.userEmail.text,self.zipCode.text,self.userAdress.text,self.applyDate.text];
-                NSLog(@"firstInfo is %@",firstInfo);
+                [self.navigationController pushViewController:self.requisitionChildViewController animated:YES];
+                [self.requisitionChildViewController setFirstInfo:firstInfo];
                 
             }
         }
             break;
         case 1:
         {
-            if ([self.userName.text isEqualToString:@""]||[self.userDanwei.text isEqualToString:@""]||[self.credType.text isEqualToString:@""]||[self.credNumber.text isEqualToString:@""]||[self.userNumber.text isEqualToString:@""]||[self.userChuanzhen.text isEqualToString:@""]||[self.userEmail.text isEqualToString:@""]||[self.zipCode.text isEqualToString:@""]||[self.userAdress.text isEqualToString:@""]||[self.applyDate.text isEqualToString:@""])
+            if ([self.orgName.text isEqualToString:@""]||self.orgName==nil||[self.orgCode.text isEqualToString:@""]||self.orgCode==nil||[self.orgCorpo.text isEqualToString:@""]||self.orgCorpo==nil||[self.orgConName.text isEqualToString:@""]||self.orgConName==nil||[self.orgConNumber.text isEqualToString:@""]||self.orgConNumber==nil||[self.orgConChuanzhen.text isEqualToString:@""]||self.orgConChuanzhen==nil||[self.orgAdress.text isEqualToString:@""]||self.orgAdress==nil||[self.orgEmail.text isEqualToString:@""]||self.orgEmail==nil||[self.applyDate.text isEqualToString:@""]||self.applyDate==nil)
             {
                 UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"错误" message:@"请填写完您的信息" delegate:nil cancelButtonTitle:@"好的" otherButtonTitles: nil];
                 [alert show];
             }else
             {
                 NSString *firstInfo=[NSString stringWithFormat:@"申请人信息：法人其他区组织 名称 ：%@ ； 组织机构代码 ：%@ ； 法定代表人 ：%@ ； 联系人姓名：%@ ； 联系人电话 ：%@ ； 传真 ：%@ ； 联系地址 ：%@ ； 电子邮箱 ：%@ ；申请时间 ：%@ ；",self.orgName.text,self.orgCode.text,self.orgCorpo.text,self.orgConName.text,self.orgConNumber.text,self.orgConChuanzhen.text,self.orgAdress.text,self.orgEmail.text,self.applyDate.text];
-                NSLog(@"firstInfo is %@",firstInfo);
+                [self.navigationController pushViewController:self.requisitionChildViewController animated:YES];
+                [self.requisitionChildViewController setFirstInfo:firstInfo];
                 
             }
         }

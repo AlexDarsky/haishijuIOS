@@ -63,8 +63,6 @@
 		185E3FCC17BBE9C900173A97 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 185E3FC217BBE9C900173A97 /* SBJsonWriter.m */; };
 		185E3FCE17BBF2FF00173A97 /* HaishijuZfxxDetailViewController_4.xib in Resources */ = {isa = PBXBuildFile; fileRef = 185E3FCD17BBF2FE00173A97 /* HaishijuZfxxDetailViewController_4.xib */; };
 		186CB47717C3529A008D498D /* HaishijuRequisitionFirstViewController_4.xib in Resources */ = {isa = PBXBuildFile; fileRef = 186CB47617C3529A008D498D /* HaishijuRequisitionFirstViewController_4.xib */; };
-		186CB47B17C35EC8008D498D /* HaishijuRequisitionChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 186CB47917C35EC8008D498D /* HaishijuRequisitionChildViewController.m */; };
-		186CB47C17C35EC8008D498D /* HaishijuRequisitionChildViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 186CB47A17C35EC8008D498D /* HaishijuRequisitionChildViewController.xib */; };
 		188001F517AD59CB00F141D8 /* HaishijuCxcbDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 188001F317AD59CB00F141D8 /* HaishijuCxcbDetailViewController.m */; };
 		188001F617AD59CB00F141D8 /* HaishijuCxcbDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 188001F417AD59CB00F141D8 /* HaishijuCxcbDetailViewController.xib */; };
 		188E235B17BCBC1500ECE37C /* HaishijuZfxxListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 188E235717BCBC1500ECE37C /* HaishijuZfxxListViewController.m */; };
@@ -124,6 +122,11 @@
 		1893AF5F17ABA73600B5966C /* MLTableAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 1893AF5617ABA73600B5966C /* MLTableAlert.m */; };
 		1893AF6117ABA84F00B5966C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1893AF6017ABA84F00B5966C /* QuartzCore.framework */; };
 		1893AF6317ABB96C00B5966C /* keySelecteField@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1893AF6217ABB96C00B5966C /* keySelecteField@2x.png */; };
+		18B33E9317C49CC70056073C /* HaishijuRequisitionChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B33E9017C49CC70056073C /* HaishijuRequisitionChildViewController.m */; };
+		18B33E9417C49CC70056073C /* HaishijuRequisitionChildViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18B33E9117C49CC70056073C /* HaishijuRequisitionChildViewController.xib */; };
+		18B33E9F17C4BD890056073C /* selectedBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B33E9D17C4BD880056073C /* selectedBtn@2x.png */; };
+		18B33EA017C4BD890056073C /* unselectedBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B33E9E17C4BD880056073C /* unselectedBtn@2x.png */; };
+		18B33EA217C4BF4C0056073C /* HaishijuRequisitionChildViewController_4.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18B33EA117C4BF4C0056073C /* HaishijuRequisitionChildViewController_4.xib */; };
 		18BC700517BC78E6003A50E0 /* HaishijuZfxxChildViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18BC700117BC78E6003A50E0 /* HaishijuZfxxChildViewController.xib */; };
 		18BC700617BC78E6003A50E0 /* HaishijuZfxxChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BC700217BC78E6003A50E0 /* HaishijuZfxxChildViewController.m */; };
 		18BC700717BC78E6003A50E0 /* HaishijuZfxxChildViewController_4.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18BC700417BC78E6003A50E0 /* HaishijuZfxxChildViewController_4.xib */; };
@@ -258,9 +261,6 @@
 		185E3FC217BBE9C900173A97 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
 		185E3FCD17BBF2FE00173A97 /* HaishijuZfxxDetailViewController_4.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HaishijuZfxxDetailViewController_4.xib; sourceTree = "<group>"; };
 		186CB47617C3529A008D498D /* HaishijuRequisitionFirstViewController_4.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HaishijuRequisitionFirstViewController_4.xib; sourceTree = "<group>"; };
-		186CB47817C35EC8008D498D /* HaishijuRequisitionChildViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HaishijuRequisitionChildViewController.h; sourceTree = "<group>"; };
-		186CB47917C35EC8008D498D /* HaishijuRequisitionChildViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HaishijuRequisitionChildViewController.m; sourceTree = "<group>"; };
-		186CB47A17C35EC8008D498D /* HaishijuRequisitionChildViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HaishijuRequisitionChildViewController.xib; sourceTree = "<group>"; };
 		188001F217AD59CB00F141D8 /* HaishijuCxcbDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HaishijuCxcbDetailViewController.h; sourceTree = "<group>"; };
 		188001F317AD59CB00F141D8 /* HaishijuCxcbDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HaishijuCxcbDetailViewController.m; sourceTree = "<group>"; };
 		188001F417AD59CB00F141D8 /* HaishijuCxcbDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HaishijuCxcbDetailViewController.xib; sourceTree = "<group>"; };
@@ -335,6 +335,12 @@
 		1893AF5617ABA73600B5966C /* MLTableAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLTableAlert.m; sourceTree = "<group>"; };
 		1893AF6017ABA84F00B5966C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		1893AF6217ABB96C00B5966C /* keySelecteField@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "keySelecteField@2x.png"; sourceTree = "<group>"; };
+		18B33E8F17C49CC70056073C /* HaishijuRequisitionChildViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HaishijuRequisitionChildViewController.h; sourceTree = "<group>"; };
+		18B33E9017C49CC70056073C /* HaishijuRequisitionChildViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HaishijuRequisitionChildViewController.m; sourceTree = "<group>"; };
+		18B33E9117C49CC70056073C /* HaishijuRequisitionChildViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HaishijuRequisitionChildViewController.xib; sourceTree = "<group>"; };
+		18B33E9D17C4BD880056073C /* selectedBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "selectedBtn@2x.png"; sourceTree = "<group>"; };
+		18B33E9E17C4BD880056073C /* unselectedBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "unselectedBtn@2x.png"; sourceTree = "<group>"; };
+		18B33EA117C4BF4C0056073C /* HaishijuRequisitionChildViewController_4.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HaishijuRequisitionChildViewController_4.xib; sourceTree = "<group>"; };
 		18BC700117BC78E6003A50E0 /* HaishijuZfxxChildViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HaishijuZfxxChildViewController.xib; sourceTree = "<group>"; };
 		18BC700217BC78E6003A50E0 /* HaishijuZfxxChildViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HaishijuZfxxChildViewController.m; sourceTree = "<group>"; };
 		18BC700317BC78E6003A50E0 /* HaishijuZfxxChildViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HaishijuZfxxChildViewController.h; sourceTree = "<group>"; };
@@ -841,13 +847,16 @@
 		18EA892F17BF13E200C4110F /* 在线申请 */ = {
 			isa = PBXGroup;
 			children = (
+				18B33EA117C4BF4C0056073C /* HaishijuRequisitionChildViewController_4.xib */,
+				18B33E9D17C4BD880056073C /* selectedBtn@2x.png */,
+				18B33E9E17C4BD880056073C /* unselectedBtn@2x.png */,
+				18B33E8F17C49CC70056073C /* HaishijuRequisitionChildViewController.h */,
+				18B33E9017C49CC70056073C /* HaishijuRequisitionChildViewController.m */,
+				18B33E9117C49CC70056073C /* HaishijuRequisitionChildViewController.xib */,
 				186CB47617C3529A008D498D /* HaishijuRequisitionFirstViewController_4.xib */,
 				18EA893017BF144400C4110F /* HaishijuRequisitionFirstViewController.h */,
 				18EA893117BF144400C4110F /* HaishijuRequisitionFirstViewController.m */,
 				18EA893217BF144400C4110F /* HaishijuRequisitionFirstViewController.xib */,
-				186CB47817C35EC8008D498D /* HaishijuRequisitionChildViewController.h */,
-				186CB47917C35EC8008D498D /* HaishijuRequisitionChildViewController.m */,
-				186CB47A17C35EC8008D498D /* HaishijuRequisitionChildViewController.xib */,
 			);
 			path = "在线申请";
 			sourceTree = "<group>";
@@ -1020,7 +1029,10 @@
 				188E239917BCDA6800ECE37C /* HaishijuJyjhcViewController_4.xib in Resources */,
 				18EA893417BF144400C4110F /* HaishijuRequisitionFirstViewController.xib in Resources */,
 				186CB47717C3529A008D498D /* HaishijuRequisitionFirstViewController_4.xib in Resources */,
-				186CB47C17C35EC8008D498D /* HaishijuRequisitionChildViewController.xib in Resources */,
+				18B33E9417C49CC70056073C /* HaishijuRequisitionChildViewController.xib in Resources */,
+				18B33E9F17C4BD890056073C /* selectedBtn@2x.png in Resources */,
+				18B33EA017C4BD890056073C /* unselectedBtn@2x.png in Resources */,
+				18B33EA217C4BF4C0056073C /* HaishijuRequisitionChildViewController_4.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1080,7 +1092,7 @@
 				188E239417BCDA6800ECE37C /* HaishijuJyjhcDetailViewController.m in Sources */,
 				188E239717BCDA6800ECE37C /* HaishijuJyjhcViewController.m in Sources */,
 				18EA893317BF144400C4110F /* HaishijuRequisitionFirstViewController.m in Sources */,
-				186CB47B17C35EC8008D498D /* HaishijuRequisitionChildViewController.m in Sources */,
+				18B33E9317C49CC70056073C /* HaishijuRequisitionChildViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HaishijuRequisitionChildViewController.h"
 
 @interface HaishijuRequisitionFirstViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 {
     int userType;
 }
+
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIView *customNavBar;
 
@@ -33,6 +35,6 @@
 @property (strong,nonatomic) UITextField *orgConChuanzhen;
 @property (strong,nonatomic) UITextField *orgAdress;
 @property (strong,nonatomic) UITextField *orgEmail;
-
+@property (strong,nonatomic) HaishijuRequisitionChildViewController *requisitionChildViewController;
 @property (strong,nonatomic) UITextField *applyDate;
 @end

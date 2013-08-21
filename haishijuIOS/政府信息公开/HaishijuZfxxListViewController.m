@@ -681,7 +681,7 @@ static HaishijuZfxxListViewController *shareHaishijuZfxxListViewController = nil
             [button2 setTitle:[NSString stringWithFormat:@"%d",currentPage+1] forState:UIControlStateNormal];
             [button3 setTitle:[NSString stringWithFormat:@"%d",totalPage] forState:UIControlStateNormal];
             button1.hidden=button2.hidden=button3.hidden=NO;
-            button4.hidden=button5.hidden=buttonMore.hidden==YES;
+            button4.hidden=button5.hidden=buttonMore.hidden=YES;
         }
             break;
         case 4:
@@ -702,8 +702,6 @@ static HaishijuZfxxListViewController *shareHaishijuZfxxListViewController = nil
                 [button1 setTitle:[NSString stringWithFormat:@"%d",totalPage] forState:UIControlStateNormal];
                 button1.hidden=NO;
                 button2.hidden=button3.hidden=button4.hidden=button5.hidden=buttonMore.hidden=YES;
-                
-                
             }else
             {
                 [button1 setTitle:[NSString stringWithFormat:@"%d",currentPage] forState:UIControlStateNormal];
