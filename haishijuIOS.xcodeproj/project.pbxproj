@@ -817,8 +817,8 @@
 		18D339B917AA8B69005308A4 /* 诚信船舶名单 */ = {
 			isa = PBXGroup;
 			children = (
-				185DB65A17AFFD4F00537CC5 /* HaishijuCxcbViewController_4.xib */,
 				185DB65B17AFFD4F00537CC5 /* HaishijuCxcbDetailViewController_4.xib */,
+				185DB65A17AFFD4F00537CC5 /* HaishijuCxcbViewController_4.xib */,
 				18D339BA17AA8B91005308A4 /* HaishijuCxcbViewController.h */,
 				18D339BB17AA8B91005308A4 /* HaishijuCxcbViewController.m */,
 				18D339BC17AA8B91005308A4 /* HaishijuCxcbViewController.xib */,
@@ -1199,13 +1199,13 @@
 		18BE280217A96E5800AFEE01 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Linchuan Wang (TVQ942G9J5)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Linchuan Wang (K677UDX3Q8)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "haishijuIOS/haishijuIOS-Prefix.pch";
 				INFOPLIST_FILE = "haishijuIOS/haishijuIOS-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "59324D4D-1541-4F2F-996E-9442C843AD2B";
+				PROVISIONING_PROFILE = "0EEACB0B-6F0E-4EEE-AAED-688A3A1D7F22";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

@@ -537,6 +537,22 @@
 {
     [sender resignFirstResponder];
 }
+-(void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    NSLog(@"MOVE");
+    NSTimeInterval animationDuration = 0.30f;
+    [UIView beginAnimations:@"ResizeForKeyboard" context:nil];
+    [UIView setAnimationDuration:animationDuration];
+    
+    //将视图的Y坐标向上移动offset个单位，以使下面腾出地方用于软键盘的显示
+    self.customSearchBar.frame = CGRectMake(0.0f, [[UIScreen mainScreen] bounds].size.height-256- self.customSearchBar.frame.size.height/2, self.customSearchBar.frame.size.width, self.customSearchBar.frame.size.height);
+    
+    [UIView commitAnimations];
+}
+-(void)textFieldDidEndEditing:(UITextField *)textField
+{
+    self.customSearchBar.frame =CGRectMake(0, [[UIScreen mainScreen] bounds].size.height-self.customSearchBar.frame.size.height/2-20, self.customSearchBar.frame.size.width, self.customSearchBar.frame.size.height);
+}
 - (IBAction)backAction:(id)sender {
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
@@ -681,7 +697,10 @@
                 [button4 setTitle:[NSString stringWithFormat:@"%d",currentPage+3] forState:UIControlStateNormal];
                 [button5 setTitle:[NSString stringWithFormat:@"%d",totalPage] forState:UIControlStateNormal];
                 button1.hidden=button2.hidden=button3.hidden=button4.hidden=button5.hidden=NO;
-                button5.frame=CGRectMake(187, 379, button5.frame.size.width, button5.frame.size.height);
+                if ([[UIScreen mainScreen] bounds].size.height>480.00)
+                    button5.frame=CGRectMake(187, 472, button5.frame.size.width, button5.frame.size.height);
+                else
+                    button5.frame=CGRectMake(187, 379, button5.frame.size.width, button5.frame.size.height);
                 buttonMore.hidden=YES;
                 
             }
@@ -697,7 +716,10 @@
                 [button3 setTitle:[NSString stringWithFormat:@"%d",currentPage+2] forState:UIControlStateNormal];
                 [button4 setTitle:[NSString stringWithFormat:@"%d",currentPage+3] forState:UIControlStateNormal];
                 [button5 setTitle:[NSString stringWithFormat:@"%d",totalPage] forState:UIControlStateNormal];
-                button5.frame=CGRectMake(215, 379, button5.frame.size.width, button5.frame.size.height);
+                if ([[UIScreen mainScreen] bounds].size.height>480.00)
+                    button5.frame=CGRectMake(215, 472, button5.frame.size.width, button5.frame.size.height);
+                else
+                    button5.frame=CGRectMake(215, 379, button5.frame.size.width, button5.frame.size.height);
                 button1.hidden=button2.hidden=button3.hidden=button4.hidden=button5.hidden=buttonMore.hidden=NO;
                 
                 
@@ -743,7 +765,10 @@
                         [button4 setTitle:[NSString stringWithFormat:@"%d",currentPage+3] forState:UIControlStateNormal];
                         [button5 setTitle:[NSString stringWithFormat:@"%d",totalPage] forState:UIControlStateNormal];
                         button1.hidden=button2.hidden=button3.hidden=button4.hidden=button5.hidden=NO;
-                        button5.frame=CGRectMake(187, 379, button5.frame.size.width, button5.frame.size.height);
+                        if ([[UIScreen mainScreen] bounds].size.height>480.00)
+                            button5.frame=CGRectMake(187, 472, button5.frame.size.width, button5.frame.size.height);
+                        else
+                            button5.frame=CGRectMake(187, 379, button5.frame.size.width, button5.frame.size.height);
                         buttonMore.hidden=YES;
                         
                     }
@@ -765,6 +790,7 @@
     }
     
 }
+
 
 -(void)pushAction:(id)sender
 {

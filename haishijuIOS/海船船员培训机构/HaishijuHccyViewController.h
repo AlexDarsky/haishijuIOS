@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "MLTableAlert.h"
 #import "HaishijuHccyDetailViewController.h"
-@interface HaishijuHccyViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
+@interface HaishijuHccyViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 {
     NSMutableArray *idsArray;
     NSMutableArray *jigouArray;

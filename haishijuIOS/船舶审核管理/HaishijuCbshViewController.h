@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "MLTableAlert.h"
 #import "HaishijuCbshDetailViewController.h"
-@interface HaishijuCbshViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
+@interface HaishijuCbshViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 {
     NSMutableArray *idsArray;
     NSMutableArray *chuanmingsArray;

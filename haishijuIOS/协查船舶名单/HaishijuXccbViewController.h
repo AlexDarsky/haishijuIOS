@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "MLTableAlert.h"
 #import "HaishijuXccbDetailViewController.h"
-@interface HaishijuXccbViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
+@interface HaishijuXccbViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 {
     NSMutableArray *idsArray;
     NSMutableArray *chuanmingsArray;
