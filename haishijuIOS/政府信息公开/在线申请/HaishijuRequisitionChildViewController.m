@@ -7,6 +7,7 @@
 //
 
 #import "HaishijuRequisitionChildViewController.h"
+#import "HaishijuServerHelper.h"
 
 @interface HaishijuRequisitionChildViewController ()
 
@@ -54,7 +55,8 @@
         [alert show];
     }else
     {
-        self.firstInfo=[self.firstInfo stringByAppendingFormat:@"所需信息描述：%@;所需信息用途：%@. 获取信息的方式：",self.detailDescription.text,self.detailUse.text];
+        self.firstInfo=[self.firstInfo stringByAppendingFormat:@"&Field19=%@&Field20=%@",self.detailDescription.text,self.detailUse.text];
+        /*
         if (self.mailBtn.selected==YES) {
             self.firstInfo=[self.firstInfo stringByAppendingFormat:@"邮寄；"];
         }
@@ -66,37 +68,26 @@
         }
         if (self.ziquBtn.selected==YES) {
             self.firstInfo=[self.firstInfo stringByAppendingFormat:@"自行领取."];
-        }
-        self.firstInfo=[self.firstInfo stringByAppendingFormat:@"备注：%@",self.beiZhuField.text];
+        }*/
+        self.firstInfo=[self.firstInfo stringByAppendingFormat:@"&Field21=%@&Apply=true",self.beiZhuField.text];
         NSLog(@"%@",self.firstInfo);
-        NSString *urlString =[NSString stringWithFormat:@"http://www.gdmsa.gov.cn/android/apply.asp"];
-        
-        //将NSSrring格式的参数转换格式为NSData，POST提交必须用NSData数据。
-        NSData *postData = [self.firstInfo dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
-        //计算POST提交数据的长度
-        NSString *postLength = [NSString stringWithFormat:@"%d",[postData length]];
-        NSLog(@"postLength=%@",postLength);
-        //定义NSMutableURLRequest
-        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-        //设置提交目的url
-        [request setURL:[NSURL URLWithString:urlString]];
-        [request setHTTPMethod:@"POST"];
-        [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-        [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
-        [request setHTTPBody:postData];
-        
-        //定义
-        NSHTTPURLResponse* urlResponse = nil;
-        NSError *error = [[NSError alloc] init];
-        //同步提交:POST提交并等待返回值（同步），返回值是NSData类型。
-        NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&urlResponse error:&error];
-        //将NSData类型的返回值转换成NSString类型
-        NSString *result = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
-        NSLog(@"result is %@",result);
-        if ([@"success" compare:result]==NSOrderedSame) {
-            NSLog(@"YES");
+        NSString *urlString =[NSString stringWithFormat:@"http://www.gdmsa.gov.cn/android/apply.asp?%@",self.firstInfo];
+        HaishijuServerHelper *serverHelper=[HaishijuServerHelper shareHaishijuServerHelper];
+        NSDictionary *initDic=[[NSDictionary alloc] initWithDictionary:[serverHelper sendRequestByUrl:urlString]];
+        if (initDic!=nil) {
+            NSArray *dataList=[[NSArray alloc] initWithArray:[initDic objectForKey:@"datalist"]];
+            NSDictionary *returnMSG=[NSDictionary dictionaryWithDictionary:[dataList objectAtIndex:0]];
+            NSString *resultString=[NSString stringWithFormat:@"%@",[returnMSG objectForKey:@"msg"]];
+            UIAlertView *resultAlert=[[UIAlertView alloc] initWithTitle:@"申请结果" message:resultString delegate:nil cancelButtonTitle:@"好的" otherButtonTitles: nil];
+            [resultAlert show];
         }else
-            NSLog(@"NO");
+        {
+            UIAlertView *resultAlert=[[UIAlertView alloc] initWithTitle:@"申请结果" message:@"数据错误" delegate:nil cancelButtonTitle:@"好的" otherButtonTitles: nil];
+            [resultAlert show];
+
+        }
+            
+
     }
 }
 - (IBAction)backAction:(id)sender {
@@ -134,7 +125,16 @@
     }
    
 }
-
+-(NSString*)getEncodedString:(NSString*)urlString
+{
+    NSString *encodedString = (NSString *)
+    CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
+                                                              (CFStringRef)urlString,
+                                                              (CFStringRef)@"!$&'()*+,-./:;=?@_~%#[]",
+                                                              NULL,
+                                                              kCFStringEncodingUTF8));
+    return encodedString;
+}
 - (void)viewDidUnload {
     [self setDetailDescription:nil];
     [self setDetailUse:nil];
