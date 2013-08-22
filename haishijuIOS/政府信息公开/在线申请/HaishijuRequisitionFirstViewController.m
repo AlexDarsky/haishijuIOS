@@ -354,6 +354,14 @@
             break;
     }
 }
+- (IBAction)backAction:(id)sender {
+    int index=[[self.navigationController viewControllers]indexOfObject:self];
+    [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:index-1]animated:YES];
+}
+- (IBAction)backToHomeAction:(id)sender
+{
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
 -(void)textFiledReturnEditing:(id)sender {
     [sender resignFirstResponder];
 }
