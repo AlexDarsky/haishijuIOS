@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <SystemConfiguration/SystemConfiguration.h>
+#import <netdb.h>
 #import "HaishijuServerHelper.h"
 #import "HaishijuCxcbViewController.h"
 #import "HaishijuZfzcxViewController.h"

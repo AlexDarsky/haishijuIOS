@@ -130,6 +130,7 @@
 		18BC700517BC78E6003A50E0 /* HaishijuZfxxChildViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18BC700117BC78E6003A50E0 /* HaishijuZfxxChildViewController.xib */; };
 		18BC700617BC78E6003A50E0 /* HaishijuZfxxChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BC700217BC78E6003A50E0 /* HaishijuZfxxChildViewController.m */; };
 		18BC700717BC78E6003A50E0 /* HaishijuZfxxChildViewController_4.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18BC700417BC78E6003A50E0 /* HaishijuZfxxChildViewController_4.xib */; };
+		18BD483517CA06D20036A25A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18BD483417CA06D20036A25A /* SystemConfiguration.framework */; };
 		18BE27E117A96E5800AFEE01 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18BE27E017A96E5800AFEE01 /* UIKit.framework */; };
 		18BE27E317A96E5800AFEE01 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18BE27E217A96E5800AFEE01 /* Foundation.framework */; };
 		18BE27E517A96E5800AFEE01 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18BE27E417A96E5800AFEE01 /* CoreGraphics.framework */; };
@@ -345,14 +346,15 @@
 		18BC700217BC78E6003A50E0 /* HaishijuZfxxChildViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HaishijuZfxxChildViewController.m; sourceTree = "<group>"; };
 		18BC700317BC78E6003A50E0 /* HaishijuZfxxChildViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HaishijuZfxxChildViewController.h; sourceTree = "<group>"; };
 		18BC700417BC78E6003A50E0 /* HaishijuZfxxChildViewController_4.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HaishijuZfxxChildViewController_4.xib; sourceTree = "<group>"; };
-		18BE27DD17A96E5800AFEE01 /* haishijuIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = haishijuIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		18BD483417CA06D20036A25A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		18BE27DD17A96E5800AFEE01 /* 广东海事局.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "广东海事局.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		18BE27E017A96E5800AFEE01 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		18BE27E217A96E5800AFEE01 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		18BE27E417A96E5800AFEE01 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		18BE27E817A96E5800AFEE01 /* haishijuIOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "haishijuIOS-Info.plist"; sourceTree = "<group>"; };
+		18BE27E817A96E5800AFEE01 /* 广东海事局-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "广东海事局-Info.plist"; sourceTree = "<group>"; };
 		18BE27EA17A96E5800AFEE01 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		18BE27EC17A96E5800AFEE01 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		18BE27EE17A96E5800AFEE01 /* haishijuIOS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "haishijuIOS-Prefix.pch"; sourceTree = "<group>"; };
+		18BE27EE17A96E5800AFEE01 /* 广东海事局-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "广东海事局-Prefix.pch"; sourceTree = "<group>"; };
 		18BE27EF17A96E5800AFEE01 /* HaishijuAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HaishijuAppDelegate.h; sourceTree = "<group>"; };
 		18BE27F017A96E5800AFEE01 /* HaishijuAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HaishijuAppDelegate.m; sourceTree = "<group>"; };
 		18BE27F217A96E5800AFEE01 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
@@ -418,6 +420,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18BD483517CA06D20036A25A /* SystemConfiguration.framework in Frameworks */,
 				1893AF6117ABA84F00B5966C /* QuartzCore.framework in Frameworks */,
 				18BE27E117A96E5800AFEE01 /* UIKit.framework in Frameworks */,
 				18BE27E317A96E5800AFEE01 /* Foundation.framework in Frameworks */,
@@ -678,6 +681,7 @@
 		18BE27D417A96E5800AFEE01 = {
 			isa = PBXGroup;
 			children = (
+				18BD483417CA06D20036A25A /* SystemConfiguration.framework */,
 				18D0D46217B124DE000D9343 /* Icon.png */,
 				18D0D46017B124DA000D9343 /* lcon@2x.png */,
 				1893AF6017ABA84F00B5966C /* QuartzCore.framework */,
@@ -690,7 +694,7 @@
 		18BE27DE17A96E5800AFEE01 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				18BE27DD17A96E5800AFEE01 /* haishijuIOS.app */,
+				18BE27DD17A96E5800AFEE01 /* 广东海事局.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -745,10 +749,10 @@
 		18BE27E717A96E5800AFEE01 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				18BE27E817A96E5800AFEE01 /* haishijuIOS-Info.plist */,
+				18BE27E817A96E5800AFEE01 /* 广东海事局-Info.plist */,
 				18BE27E917A96E5800AFEE01 /* InfoPlist.strings */,
 				18BE27EC17A96E5800AFEE01 /* main.m */,
-				18BE27EE17A96E5800AFEE01 /* haishijuIOS-Prefix.pch */,
+				18BE27EE17A96E5800AFEE01 /* 广东海事局-Prefix.pch */,
 				18BE27F217A96E5800AFEE01 /* Default.png */,
 				18BE27F417A96E5800AFEE01 /* Default@2x.png */,
 				18BE27F617A96E5800AFEE01 /* Default-568h@2x.png */,
@@ -864,9 +868,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		18BE27DC17A96E5800AFEE01 /* haishijuIOS */ = {
+		18BE27DC17A96E5800AFEE01 /* 广东海事局 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 18BE280017A96E5800AFEE01 /* Build configuration list for PBXNativeTarget "haishijuIOS" */;
+			buildConfigurationList = 18BE280017A96E5800AFEE01 /* Build configuration list for PBXNativeTarget "广东海事局" */;
 			buildPhases = (
 				18BE27D917A96E5800AFEE01 /* Sources */,
 				18BE27DA17A96E5800AFEE01 /* Frameworks */,
@@ -876,9 +880,9 @@
 			);
 			dependencies = (
 			);
-			name = haishijuIOS;
+			name = "广东海事局";
 			productName = haishijuIOS;
-			productReference = 18BE27DD17A96E5800AFEE01 /* haishijuIOS.app */;
+			productReference = 18BE27DD17A96E5800AFEE01 /* 广东海事局.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -891,7 +895,7 @@
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = Darsky;
 			};
-			buildConfigurationList = 18BE27D817A96E5800AFEE01 /* Build configuration list for PBXProject "haishijuIOS" */;
+			buildConfigurationList = 18BE27D817A96E5800AFEE01 /* Build configuration list for PBXProject "广东海事局" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -903,7 +907,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				18BE27DC17A96E5800AFEE01 /* haishijuIOS */,
+				18BE27DC17A96E5800AFEE01 /* 广东海事局 */,
 			);
 		};
 /* End PBXProject section */
@@ -1187,10 +1191,10 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer: Linchuan Wang (TVQ942G9J5)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "haishijuIOS/haishijuIOS-Prefix.pch";
-				INFOPLIST_FILE = "haishijuIOS/haishijuIOS-Info.plist";
+				GCC_PREFIX_HEADER = "haishijuIOS/广东海事局-Prefix.pch";
+				INFOPLIST_FILE = "haishijuIOS/广东海事局-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "广东海事局";
 				PROVISIONING_PROFILE = "59324D4D-1541-4F2F-996E-9442C843AD2B";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1201,10 +1205,10 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Linchuan Wang (K677UDX3Q8)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "haishijuIOS/haishijuIOS-Prefix.pch";
-				INFOPLIST_FILE = "haishijuIOS/haishijuIOS-Info.plist";
+				GCC_PREFIX_HEADER = "haishijuIOS/广东海事局-Prefix.pch";
+				INFOPLIST_FILE = "haishijuIOS/广东海事局-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "广东海事局";
 				PROVISIONING_PROFILE = "0EEACB0B-6F0E-4EEE-AAED-688A3A1D7F22";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1213,7 +1217,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		18BE27D817A96E5800AFEE01 /* Build configuration list for PBXProject "haishijuIOS" */ = {
+		18BE27D817A96E5800AFEE01 /* Build configuration list for PBXProject "广东海事局" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				18BE27FE17A96E5800AFEE01 /* Debug */,
@@ -1222,7 +1226,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		18BE280017A96E5800AFEE01 /* Build configuration list for PBXNativeTarget "haishijuIOS" */ = {
+		18BE280017A96E5800AFEE01 /* Build configuration list for PBXNativeTarget "广东海事局" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				18BE280117A96E5800AFEE01 /* Debug */,

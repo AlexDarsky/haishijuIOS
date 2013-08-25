@@ -566,7 +566,7 @@
 }
 
 - (IBAction)showKeyWordsSelect:(id)sender {
-    self.alert = [MLTableAlert tableAlertWithTitle:@"Choose an option..." cancelButtonTitle:@"Cancel" numberOfRows:^NSInteger (NSInteger section)
+    self.alert = [MLTableAlert tableAlertWithTitle:@"选择搜索的关键字" cancelButtonTitle:@"Cancel" numberOfRows:^NSInteger (NSInteger section)
                   {
                       return [keyWordsArray count];
                 }

@@ -176,86 +176,124 @@
 -(void)pushToChildViewController:(id)sender
 {
     NSLog(@"%d",[sender tag]);
-    switch ([sender tag]) {
-        case 0:
-        {
-            [self.navigationController pushViewController:self.zfxxViewController animated:YES];
+    if ([self connectedToNetwork]) {
+        switch ([sender tag]) {
+            case 0:
+            {
+                [self.navigationController pushViewController:self.zfxxViewController animated:YES];
+            }
+                break;
+            case 1:
+            {
+                [self.navigationController pushViewController:self.cxcbViewController animated:YES];
+            }
+                break;
+            case 2:
+            {
+                [self.navigationController pushViewController:self.gzcbViewController animated:YES];
+            }
+                break;
+            case 3:
+            {
+                [self.navigationController pushViewController:self.xccbViewController animated:YES];
+            }
+                break;
+            case 4:
+            {
+                [self.navigationController pushViewController:self.cbshViewController animated:YES];
+            }
+                break;
+            case 5:
+            {
+                [self.navigationController pushViewController:self.iSMViewController animated:YES];
+                
+            }
+                break;
+            case 6:
+            {
+                [self.navigationController pushViewController:self.hccyViewController animated:YES];
+                
+            }
+                break;
+            case 7:
+            {
+                [self.navigationController pushViewController:self.nSMViewController animated:YES];
+            }
+                break;
+            case 8:
+            {
+                [self.navigationController pushViewController:self.zdgzViewController animated:YES];
+            }
+                break;
+            case 9:
+            {
+                [self.navigationController pushViewController:self.nhcyViewController animated:YES ];
+            }
+                break;
+            case 10:
+            {
+                [self.navigationController pushViewController:self.aqcxczViewController animated:YES ];
+            }
+                break;
+            case 11:
+            {
+                [self.navigationController pushViewController:self.jyjhcViewController animated:YES ];
+            }
+                break;
+            case 12:
+            {
+                [self.navigationController pushViewController:self.hywpjgViewController animated:YES ];
+            }
+                break;
+            case 13:
+            {
+                [self.navigationController pushViewController:self.zfzcxViewController animated:YES ];
+                
+            }
+                break;
+            case 14:
+            {
+                [self.navigationController pushViewController:self.cbajyViewController animated:YES ];
+            }
+                break;
         }
-            break;
-        case 1:
-        {
-            [self.navigationController pushViewController:self.cxcbViewController animated:YES];
-        }
-            break;
-        case 2:
-        {
-             [self.navigationController pushViewController:self.gzcbViewController animated:YES];
-        }
-            break;
-        case 3:
-        {
-            [self.navigationController pushViewController:self.xccbViewController animated:YES];
-        }
-            break;
-        case 4:
-        {
-            [self.navigationController pushViewController:self.cbshViewController animated:YES];
-        }
-            break;
-        case 5:
-        {
-            [self.navigationController pushViewController:self.iSMViewController animated:YES];
-      
-        }
-            break;
-        case 6:
-        {
-            [self.navigationController pushViewController:self.hccyViewController animated:YES];
-
-        }
-            break;
-        case 7:
-        {
-            [self.navigationController pushViewController:self.nSMViewController animated:YES];
-        }
-            break;
-        case 8:
-        {
-           [self.navigationController pushViewController:self.zdgzViewController animated:YES];
-        }
-            break;
-        case 9:
-        {
-            [self.navigationController pushViewController:self.nhcyViewController animated:YES ];
-        }
-            break;
-        case 10:
-        {
-            [self.navigationController pushViewController:self.aqcxczViewController animated:YES ];
-        }
-            break;
-        case 11:
-        {
-            [self.navigationController pushViewController:self.jyjhcViewController animated:YES ];
-        }
-            break;
-        case 12:
-        {
-            [self.navigationController pushViewController:self.hywpjgViewController animated:YES ];
-        }
-            break;
-        case 13:
-        {
-            [self.navigationController pushViewController:self.zfzcxViewController animated:YES ];
-            
-        }
-            break;
-        case 14:
-        {
-            [self.navigationController pushViewController:self.cbajyViewController animated:YES ];
-        }
-            break;
+    }else
+    {
+        UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"网络连接失败" message:@"检测不到可用网络，请您确认网络设置是否正常" delegate:nil cancelButtonTitle:@"知道了" otherButtonTitles: nil];
+        [alert show];
     }
+
+}
+- (BOOL) connectedToNetwork
+{
+    // Create zero addy
+    struct sockaddr_in zeroAddress;
+    bzero(&zeroAddress, sizeof(zeroAddress));
+    zeroAddress.sin_len = sizeof(zeroAddress);
+    zeroAddress.sin_family = AF_INET;
+	
+    // Recover reachability flags
+    SCNetworkReachabilityRef defaultRouteReachability = SCNetworkReachabilityCreateWithAddress(NULL, (struct sockaddr *)&zeroAddress);
+    SCNetworkReachabilityFlags flags;
+	
+    BOOL didRetrieveFlags = SCNetworkReachabilityGetFlags(defaultRouteReachability, &flags);
+    CFRelease(defaultRouteReachability);
+	
+    if (!didRetrieveFlags)
+    {
+        NSLog(@"Error. Could not recover network reachability flags");
+        return NO;
+    }
+	
+    BOOL isReachable = flags & kSCNetworkFlagsReachable;
+    BOOL needsConnection = flags & kSCNetworkFlagsConnectionRequired;
+	BOOL nonWiFi = flags & kSCNetworkReachabilityFlagsTransientConnection;
+	
+    
+	NSURL *testURL = [NSURL URLWithString:@"http://www.baidu.com/"];
+	NSURLRequest *testRequest = [NSURLRequest requestWithURL:testURL  cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
+	NSURLConnection *testConnection = [[NSURLConnection alloc] initWithRequest:testRequest delegate:self];
+    return ((isReachable && !needsConnection) || nonWiFi) ? (testConnection ? YES : NO) : NO;
 }
 - (void)didReceiveMemoryWarning
 {
