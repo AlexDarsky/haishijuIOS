@@ -286,7 +286,7 @@
             switch (indexPath.row) {
                 case 0:
                 {
-
+                    //组织机构
                     UIActionSheet *actionSheet=[[UIActionSheet alloc] initWithTitle:@"选择栏目" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"组织机构",@"领导动态", nil];
                     actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
                     [actionSheet showInView:self.view];

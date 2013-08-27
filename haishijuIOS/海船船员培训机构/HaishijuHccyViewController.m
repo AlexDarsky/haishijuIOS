@@ -138,6 +138,13 @@
     }
         return cell;
 }
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"%@",[idsArray objectAtIndex:[indexPath row]-1]);
+    [self.navigationController pushViewController:gzcbDetailViewController animated:YES];
+    [gzcbDetailViewController loadInfoBySendRequest:[idsArray objectAtIndex:[indexPath row]-1]];
+
+}
 -(IBAction)tapBotAction:(id)sender
 {
     NSLog(@"%d",[sender tag]);
@@ -825,8 +832,6 @@
     NSLog(@"%@",[idsArray objectAtIndex:[sender tag]]);
     [self.navigationController pushViewController:gzcbDetailViewController animated:YES];
     [gzcbDetailViewController loadInfoBySendRequest:[idsArray objectAtIndex:[sender tag]]];
-    
-    
 }
 - (void)didReceiveMemoryWarning
 {

@@ -133,6 +133,12 @@
     }
         return cell;
 }
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"%@",[idsArray objectAtIndex:[indexPath row]-1]);
+    [self.navigationController pushViewController:cxcbDetailViewController animated:YES];
+    [cxcbDetailViewController loadInfoBySendRequest:[idsArray objectAtIndex:indexPath.row-1]];
+}
 -(IBAction)tapBotAction:(id)sender
 {
     NSLog(@"%d",[sender tag]);
@@ -810,7 +816,6 @@
     }
     
 }
-
 -(void)pushAction:(id)sender
 {
     NSLog(@"%@",[idsArray objectAtIndex:[sender tag]]);

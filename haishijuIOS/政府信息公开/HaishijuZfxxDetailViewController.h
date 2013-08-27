@@ -19,5 +19,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *detailTitle;
 @property (readwrite) int ID;
 -(void)loadInfoBySendRequest:(NSString*)chuanID;
+-(void)loadContentUS;
 +(HaishijuZfxxDetailViewController*)shareHaishijuZfxxDetailViewController;
 @end

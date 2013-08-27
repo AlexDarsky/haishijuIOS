@@ -156,6 +156,23 @@ static HaishijuZfxxListViewController *shareHaishijuZfxxListViewController = nil
     }
         return cell;
 }
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([[chuanmingsArray objectAtIndex:indexPath.row-1]isEqualToString:@"联系我们"]) {
+        
+        NSLog(@"联系我们%@",[idsArray objectAtIndex:indexPath.row-1]);
+        HaishijuZfxxDetailViewController *zfxxDetailViewController=[HaishijuZfxxDetailViewController shareHaishijuZfxxDetailViewController];
+        [self.navigationController pushViewController:zfxxDetailViewController animated:YES];
+        [zfxxDetailViewController loadContentUS];
+        
+    }else
+    {
+    NSLog(@"%@",[idsArray objectAtIndex:[indexPath row]-1]);
+    HaishijuZfxxDetailViewController *zfxxDetailViewController=[HaishijuZfxxDetailViewController shareHaishijuZfxxDetailViewController];
+    [self.navigationController pushViewController:zfxxDetailViewController animated:YES];
+    [zfxxDetailViewController loadInfoBySendRequest:[idsArray objectAtIndex:[indexPath row]-1]];
+    }
+}
 -(IBAction)tapBotAction:(id)sender
 {
     NSLog(@"%d",[sender tag]);
@@ -825,10 +842,21 @@ static HaishijuZfxxListViewController *shareHaishijuZfxxListViewController = nil
 
 -(void)pushAction:(id)sender
 {
-    NSLog(@"%@",[idsArray objectAtIndex:[sender tag]]);
-    HaishijuZfxxDetailViewController *zfxxDetailViewController=[HaishijuZfxxDetailViewController shareHaishijuZfxxDetailViewController];
-    [self.navigationController pushViewController:zfxxDetailViewController animated:YES];
-    [zfxxDetailViewController loadInfoBySendRequest:[idsArray objectAtIndex:[sender tag]]];
+    if ([[chuanmingsArray objectAtIndex:[sender tag]]isEqualToString:@"联系我们"]) {
+        
+        NSLog(@"联系我们%@",[idsArray objectAtIndex:[sender tag]]);
+        HaishijuZfxxDetailViewController *zfxxDetailViewController=[HaishijuZfxxDetailViewController shareHaishijuZfxxDetailViewController];
+        [self.navigationController pushViewController:zfxxDetailViewController animated:YES];
+        [zfxxDetailViewController loadContentUS];
+        
+    }else
+    {
+        NSLog(@"%@",[idsArray objectAtIndex:[sender tag]]);
+        HaishijuZfxxDetailViewController *zfxxDetailViewController=[HaishijuZfxxDetailViewController shareHaishijuZfxxDetailViewController];
+        [self.navigationController pushViewController:zfxxDetailViewController animated:YES];
+        [zfxxDetailViewController loadInfoBySendRequest:[idsArray objectAtIndex:[sender tag]]];
+    }
+    
 
 }
 - (void)didReceiveMemoryWarning

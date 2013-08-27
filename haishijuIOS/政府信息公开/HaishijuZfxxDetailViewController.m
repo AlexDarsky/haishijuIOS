@@ -8,6 +8,7 @@
 
 #import "HaishijuZfxxDetailViewController.h"
 #import "HaishijuServerHelper.h"
+#import "JSONKit.h"
 
 @interface HaishijuZfxxDetailViewController ()
 
@@ -65,7 +66,24 @@ static HaishijuZfxxDetailViewController *shareHaishijuZfxxDetailViewController =
     self.detailTitle.text=[NSString stringWithFormat:@"%@",titleString];
     [self.contentView loadHTMLString:contentString baseURL:nil];
 }
+-(void)loadContentUS
+{
+    NSString *urlString=[NSString stringWithFormat:@"http://www.gdmsa.gov.cn/android/contact.asp"];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:[NSURL URLWithString:[self getEncodedString:urlString]]];
+    [request setHTTPMethod:@"POST"];
+    NSHTTPURLResponse* urlResponse = nil;
+    NSError *error = [[NSError alloc] init];
+    NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&urlResponse error:&error];
+    NSString *jsonString=[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+    NSDictionary *resultsDictionary = [jsonString objectFromJSONStringWithParseOptions:JKParseOptionLooseUnicode];
+    NSArray *dataList=[NSArray arrayWithArray:[resultsDictionary objectForKey:@"datalist"]];
+    NSDictionary *contentUs=[NSDictionary dictionaryWithDictionary:[dataList objectAtIndex:0]];
+    NSURLRequest *requestURL = [NSURLRequest requestWithURL:[NSURL URLWithString:[contentUs objectForKey:@"content"]]];
+    self.detailTitle.text=[NSString stringWithFormat:@"%@",[contentUs objectForKey:@"title"]];
 
+    [self.contentView loadRequest:requestURL];
+}
 - (IBAction)backAction:(id)sender
 {
    // [self.navigationController popToViewController:self.n animated:<#(BOOL)#>];
