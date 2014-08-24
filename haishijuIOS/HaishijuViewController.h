@@ -25,11 +25,19 @@
 #import "HaishijuJyjhcViewController.h"
 #import "HaishijuHywpjgViewController.h"
 #import "HaishijuCbajyViewController.h"
+#import "BottomBarButton.h"
+#import <CoreLocation/CoreLocation.h>
+#import <MapKit/MapKit.h>
 
-@interface HaishijuViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+@interface HaishijuViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,CLLocationManagerDelegate,UIActionSheetDelegate>
 {
     NSMutableArray *modelArray;
     NSMutableArray *imagesArray;
+    UILabel *_locationLabel;
+    UIButton *_shareButton;
+    BottomBarButton *_RSSButton;
+    BottomBarButton *_offlineButton;
+    BottomBarButton *_callButton;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIView *customNavBar;
@@ -51,4 +59,6 @@
 @property (strong,nonatomic)HaishijuHywpjgViewController *hywpjgViewController;
 @property (strong,nonatomic)HaishijuCbajyViewController *cbajyViewController;
 
+@property (strong, nonatomic) CLLocationManager *locationManager;
+@property (strong, nonatomic) CLGeocoder *clGeocoder;
 @end

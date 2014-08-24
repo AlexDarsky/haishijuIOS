@@ -591,40 +591,48 @@
         urlString=[NSString stringWithFormat:@"http://www.gdmsa.gov.cn/android/getDataList.asp?type=cbajy&searchField=%@&keyword=%@&Page=%d",self.searchFieldString,self.serachField.text,currentPage];
     NSLog(@"%@",urlString);
     NSDictionary *initDic=[[NSDictionary alloc] initWithDictionary:[serverHelper sendRequestByUrl:urlString]];
+
+       
+
     NSArray *dataList=[[NSArray alloc] initWithArray:[initDic objectForKey:@"datalist"]];
     NSLog(@"%d",[dataList count]);
-
     if ([[NSDictionary dictionaryWithDictionary:[dataList objectAtIndex:0]] objectForKey:@"error"]!=nil)
     {
         UIAlertView *alerts=[[UIAlertView alloc] initWithTitle:@"搜索结果" message:@"找不到您索要搜索的信息" delegate:nil cancelButtonTitle:@"好的" otherButtonTitles: nil];
         [alerts show];
     }else
     {
-        if ([idsArray count]>0) {
-            [idsArray removeAllObjects];
-            [chuanmingsArray removeAllObjects];
-            [chuanjigangsArray removeAllObjects];
-            //   [gongsisArray removeAllObjects];
-        }
-               for (NSDictionary *dic in dataList)
-        {
-            [idsArray addObject:[dic objectForKey:@"ID"]];
-            [chuanmingsArray addObject:[dic objectForKey:@"department"]];
-            [chuanjigangsArray addObject:[dic objectForKey:@"username"]];
-            // [gongsisArray addObject:[dic objectForKey:@"GongSi"]];
-        }
-        NSArray *pageInfoArray=[[NSArray alloc] initWithArray:[initDic objectForKey:@"page"]];
-        NSDictionary *pageInfo=[[NSDictionary alloc] initWithDictionary:[pageInfoArray objectAtIndex:0]];
-        totalPage=[[NSString  stringWithFormat:@"%@",[pageInfo objectForKey:@"总页数"]] intValue];
-        currentPage=[[NSString  stringWithFormat:@"%@",[pageInfo objectForKey:@"当前页"]] intValue];;
-        total=[[NSString  stringWithFormat:@"%@",[pageInfo objectForKey:@"总记录"]] intValue];
-        [self setButtonsByTotalPage:totalPage];
-        button1.selected=YES;
-        selectBtnIndex=1;
-        
-        button1.selected=YES;
-        button2.selected=button3.selected=button4.selected=button5.selected=NO;
-        [self.tableView reloadData];
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            if ([idsArray count]>0) {
+                [idsArray removeAllObjects];
+                [chuanmingsArray removeAllObjects];
+                [chuanjigangsArray removeAllObjects];
+            }
+            for (NSDictionary *dic in dataList)
+            {
+                [idsArray addObject:[dic objectForKey:@"ID"]];
+                [chuanmingsArray addObject:[dic objectForKey:@"department"]];
+                [chuanjigangsArray addObject:[dic objectForKey:@"username"]];
+                // [gongsisArray addObject:[dic objectForKey:@"GongSi"]];
+            }
+            NSArray *pageInfoArray=[[NSArray alloc] initWithArray:[initDic objectForKey:@"page"]];
+            NSDictionary *pageInfo=[[NSDictionary alloc] initWithDictionary:[pageInfoArray objectAtIndex:0]];
+
+            dispatch_async(dispatch_get_main_queue(), ^{
+                //根据要显示的数据修改
+                totalPage=[[NSString  stringWithFormat:@"%@",[pageInfo objectForKey:@"总页数"]] intValue];
+                currentPage=[[NSString  stringWithFormat:@"%@",[pageInfo objectForKey:@"当前页"]] intValue];;
+                total=[[NSString  stringWithFormat:@"%@",[pageInfo objectForKey:@"总记录"]] intValue];
+                [self setButtonsByTotalPage:totalPage];
+                button1.selected=YES;
+                selectBtnIndex=1;
+                
+                button1.selected=YES;
+                button2.selected=button3.selected=button4.selected=button5.selected=NO;
+                [self.tableView reloadData];
+            });
+            
+        });
     }
     
 }

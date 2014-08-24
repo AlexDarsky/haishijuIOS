@@ -14,7 +14,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window = [[UIWindow alloc] initWithFrame:CGRectMake(0, 20, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-20)];
+    [application setStatusBarStyle:UIStatusBarStyleLightContent];
     // Override point for customization after application launch.
     if ([[UIScreen mainScreen] bounds].size.height>480.00)
     {

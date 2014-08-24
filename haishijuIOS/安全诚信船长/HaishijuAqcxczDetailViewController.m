@@ -39,14 +39,27 @@
     //修改url中的type的参数
     NSString *urlString=[NSString stringWithFormat:@"http://www.gdmsa.gov.cn/android/getDataDetail.asp?type=aqcxcz&ID=%@",chuanID];
     NSDictionary *tmpDic=[NSDictionary dictionaryWithDictionary:[serverHelper sendRequestByUrl:urlString]];
-    NSArray *infoArray=[tmpDic objectForKey:@"datalist"];
-    NSDictionary *infoDic=[infoArray objectAtIndex:0];
-    self.ID=[chuanID intValue];
-    //根据要显示的数据修改
-    self.username=[infoDic objectForKey:@"username"];
-    self.department=[infoDic objectForKey:@"department"];
-        [self.tableView reloadData];
-}
+    if (tmpDic!=nil)
+    {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            NSArray *infoArray=[tmpDic objectForKey:@"datalist"];
+            NSDictionary *infoDic=[infoArray objectAtIndex:0];
+            self.ID=[chuanID intValue];
+                       dispatch_async(dispatch_get_main_queue(), ^{
+                           //根据要显示的数据修改
+                           self.username=[infoDic objectForKey:@"username"];
+                           self.department=[infoDic objectForKey:@"department"];
+                           [self.tableView reloadData];
+            });
+            
+        });
+    }else
+    {
+        UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"错误" message:@"服务器无法连接，请稍后再试" delegate:nil cancelButtonTitle:@"好的" otherButtonTitles: nil];
+        [alert show];
+    }
+
+   }
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     //根据要显示的数据的行数修改

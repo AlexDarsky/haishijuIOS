@@ -8,6 +8,7 @@
 
 #import "HaishijuZfxxListViewController.h"
 #import "HaishijuServerHelper.h"
+#import "HaishijuZzjgViewController.h"
 #import <QuartzCore/QuartzCore.h>
 @interface HaishijuZfxxListViewController ()
 
@@ -167,11 +168,21 @@ static HaishijuZfxxListViewController *shareHaishijuZfxxListViewController = nil
         
     }else
     {
-    NSLog(@"%@",[idsArray objectAtIndex:[indexPath row]-1]);
-    HaishijuZfxxDetailViewController *zfxxDetailViewController=[HaishijuZfxxDetailViewController shareHaishijuZfxxDetailViewController];
-    [self.navigationController pushViewController:zfxxDetailViewController animated:YES];
-    [zfxxDetailViewController loadInfoBySendRequest:[idsArray objectAtIndex:[indexPath row]-1]];
+        NSLog(@"新的组织机构");
+        if ([[chuanmingsArray objectAtIndex:indexPath.row-1]isEqualToString:@"组织机构"]) {
+            
+            NSLog(@"新的组织机构");
+            HaishijuZzjgViewController *zzjgViewController=[HaishijuZzjgViewController  shareHaishijuZzjgViewController];
+            [self.navigationController pushViewController:zzjgViewController animated:YES];
+        }else
+        {
+            NSLog(@"%@",[idsArray objectAtIndex:indexPath.row-1]);
+            HaishijuZfxxDetailViewController *zfxxDetailViewController=[HaishijuZfxxDetailViewController shareHaishijuZfxxDetailViewController];
+            [self.navigationController pushViewController:zfxxDetailViewController animated:YES];
+            [zfxxDetailViewController loadInfoBySendRequest:[idsArray objectAtIndex:indexPath.row-1]];
+        }
     }
+
 }
 -(IBAction)tapBotAction:(id)sender
 {
@@ -842,6 +853,7 @@ static HaishijuZfxxListViewController *shareHaishijuZfxxListViewController = nil
 
 -(void)pushAction:(id)sender
 {
+    
     if ([[chuanmingsArray objectAtIndex:[sender tag]]isEqualToString:@"联系我们"]) {
         
         NSLog(@"联系我们%@",[idsArray objectAtIndex:[sender tag]]);
@@ -851,10 +863,19 @@ static HaishijuZfxxListViewController *shareHaishijuZfxxListViewController = nil
         
     }else
     {
-        NSLog(@"%@",[idsArray objectAtIndex:[sender tag]]);
-        HaishijuZfxxDetailViewController *zfxxDetailViewController=[HaishijuZfxxDetailViewController shareHaishijuZfxxDetailViewController];
-        [self.navigationController pushViewController:zfxxDetailViewController animated:YES];
-        [zfxxDetailViewController loadInfoBySendRequest:[idsArray objectAtIndex:[sender tag]]];
+        NSLog(@"新的组织机构");
+        if ([[chuanmingsArray objectAtIndex:[sender tag]]isEqualToString:@"组织机构"]) {
+            
+            NSLog(@"新的组织机构");
+            HaishijuZzjgViewController *zzjgViewController=[HaishijuZzjgViewController  shareHaishijuZzjgViewController];
+            [self.navigationController pushViewController:zzjgViewController animated:YES];
+        }else
+        {
+            NSLog(@"%@",[idsArray objectAtIndex:[sender tag]]);
+            HaishijuZfxxDetailViewController *zfxxDetailViewController=[HaishijuZfxxDetailViewController shareHaishijuZfxxDetailViewController];
+            [self.navigationController pushViewController:zfxxDetailViewController animated:YES];
+            [zfxxDetailViewController loadInfoBySendRequest:[idsArray objectAtIndex:[sender tag]]];
+        }
     }
     
 

@@ -65,6 +65,45 @@
         
     }
     self.navigationController.navigationBarHidden=YES;
+    if (!_locationLabel)
+    {
+        _locationLabel = [[UILabel alloc] initWithFrame:CGRectMake(180, self.customNavBar.frame.size.height/2-20/2+3, 60, 20)];
+        _locationLabel.backgroundColor = [UIColor clearColor];
+        _locationLabel.textColor = [UIColor colorWithRed:78.0/255.0 green:225.0/255.0 blue:253.0/255.0 alpha:1.0];
+        _locationLabel.font  = [UIFont systemFontOfSize:14];
+        _locationLabel.adjustsFontSizeToFitWidth = YES;
+        _locationLabel.text = @"未启用定位";
+        [self.customNavBar addSubview:_locationLabel];
+    }
+    
+    _shareButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    _shareButton.frame = CGRectMake(250, 14, 25, 24);
+    [_shareButton setBackgroundImage:[UIImage imageNamed:@"main_share"] forState:UIControlStateNormal];
+    [self.customNavBar addSubview:_shareButton];
+    
+    _RSSButton = [[BottomBarButton alloc] initWithFrame:CGRectMake(10, self.customSearBar.frame.size.height/2-35/2, 100, 35)];
+    [_RSSButton setImage:[UIImage imageNamed:@"RSS_icon"] forState:UIControlStateNormal];
+    [_RSSButton setTitle:@"个性化订阅" forState:UIControlStateNormal];
+    [_RSSButton addTarget:self action:@selector(didRSSButtonTouch) forControlEvents:UIControlEventTouchDown];
+    [self.customSearBar addSubview:_RSSButton];
+    
+    _offlineButton = [[BottomBarButton alloc] initWithFrame:CGRectMake(110, self.customSearBar.frame.size.height/2-35/2, 100, 35)];
+    [_offlineButton setImage:[UIImage imageNamed:@"offline_download_icon"] forState:UIControlStateNormal];
+    [_offlineButton setTitle:@"离线缓存" forState:UIControlStateNormal];
+    [_offlineButton addTarget:self action:@selector(didOfflineButtonTouch) forControlEvents:UIControlEventTouchDown];
+    [self.customSearBar addSubview:_offlineButton];
+    
+    _callButton = [[BottomBarButton alloc] initWithFrame:CGRectMake(210, self.customSearBar.frame.size.height/2-35/2, 100, 35)];
+    [_callButton setImage:[UIImage imageNamed:@"phone_call_icon"] forState:UIControlStateNormal];
+    [_callButton setTitle:@"投诉举报" forState:UIControlStateNormal];
+    [_callButton addTarget:self action:@selector(didCallButtonTouch) forControlEvents:UIControlEventTouchDown];
+    [self.customSearBar addSubview:_callButton];
+    
+    
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.delegate = self;
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    [self.locationManager startUpdatingLocation];
     
 }
 -(void)viewWillAppear:(BOOL)animated
@@ -92,7 +131,8 @@
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
     
     // cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    
+    cell.backgroundColor = [UIColor clearColor];
+    cell.backgroundView = nil;
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
      UIFont *font = [UIFont fontWithName:@"Arial" size:12];
 //    if (indexPath.row!=4)
@@ -102,8 +142,14 @@
         button1.frame=CGRectMake(40, 20, 61, 57);
         button1.tag=row;
         [button1 addTarget:self action:@selector(pushToChildViewController:) forControlEvents:UIControlEventTouchUpInside];
-        [button1 setBackgroundImage:[UIImage imageNamed:[imagesArray objectAtIndex:row] ] forState:UIControlStateNormal];
-        [cell addSubview:button1];
+  
+       //[button1 setBackgroundImage:[UIImage imageNamed:[imagesArray objectAtIndex:row] ] forState:UIControlStateNormal];
+    UIImageView * circleImage1 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[imagesArray objectAtIndex:row]]];
+    circleImage1.frame = CGRectMake(0,0, 56, 56);
+    circleImage1.layer.masksToBounds = YES;
+    circleImage1.layer.cornerRadius = 28;
+    [cell addSubview:button1];
+    [button1 addSubview:circleImage1];
         UILabel *label1=[[UILabel alloc] initWithFrame:CGRectMake(40, 80, 60, 40)];
         label1.backgroundColor=[UIColor clearColor];
         [label1 setFont:font];
@@ -116,8 +162,13 @@
         button2.tag=row+1;
         [button2 addTarget:self action:@selector(pushToChildViewController:) forControlEvents:UIControlEventTouchUpInside];
 
-        [button2 setBackgroundImage:[UIImage imageNamed:[imagesArray objectAtIndex:row+1] ] forState:UIControlStateNormal];
+//        [button2 setBackgroundImage:[UIImage imageNamed:[imagesArray objectAtIndex:row+1] ] forState:UIControlStateNormal];
+    UIImageView * circleImage2 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[imagesArray objectAtIndex:row+1]]];
+    circleImage2.frame = CGRectMake(0,0, 56, 56);
+    circleImage2.layer.masksToBounds = YES;
+    circleImage2.layer.cornerRadius = 28;
         [cell addSubview:button2];
+    [button2 addSubview:circleImage2];
         UILabel *label2=[[UILabel alloc] initWithFrame:CGRectMake(130, 80, 60, 40)];
         label2.backgroundColor=[UIColor clearColor];
         [label2 setFont:font];
@@ -130,8 +181,13 @@
         button3.tag=row+2;
         [button3 addTarget:self action:@selector(pushToChildViewController:) forControlEvents:UIControlEventTouchUpInside];
 
-        [button3 setBackgroundImage:[UIImage imageNamed:[imagesArray objectAtIndex:row+2] ] forState:UIControlStateNormal];
+      //  [button3 setBackgroundImage:[UIImage imageNamed:[imagesArray objectAtIndex:row+2] ] forState:UIControlStateNormal];
+    UIImageView * circleImage3 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[imagesArray objectAtIndex:row+2]]];
+    circleImage3.frame = CGRectMake(0,0, 56, 56);
+    circleImage3.layer.masksToBounds = YES;
+    circleImage3.layer.cornerRadius = 28;
         [cell addSubview:button3];
+    [button3 addSubview:circleImage3];
         UILabel *label3=[[UILabel alloc] initWithFrame:CGRectMake(220, 80, 60, 40)];
         label3.backgroundColor=[UIColor clearColor];
         [label3 setFont:font];
@@ -264,6 +320,79 @@
     }
 
 }
+
+#pragma mark - LocationFunction Method
+
+- (void)locationAddressWithCLLocation:(CLLocation*)locationGps
+{
+    if (self.clGeocoder == nil)
+        self.clGeocoder = [[CLGeocoder alloc] init];
+    
+    [self.clGeocoder reverseGeocodeLocation:locationGps
+                          completionHandler:^(NSArray* placemarks, NSError* error)
+     {
+         MKPlacemark* placemark = [placemarks objectAtIndex:0];
+         NSLog(@"%@",placemark.locality);
+         _locationLabel.text = placemark.locality;
+     }];
+}
+
+- (void)locationManager:(CLLocationManager *)manager
+	 didUpdateLocations:(NSArray *)locations
+{
+    NSLog(@"%@",locations);
+    
+    [manager stopUpdatingLocation];
+
+    [self locationAddressWithCLLocation:locations[0]];
+    
+}
+
+- (void)locationManager:(CLLocationManager *)manager
+       didFailWithError:(NSError *)error
+{
+   
+}
+
+//TODO:个性化订阅
+- (void)didRSSButtonTouch
+{
+    
+}
+
+//TOTO:离线数据
+- (void)didOfflineButtonTouch
+{
+    
+}
+
+//TODO:举报投诉
+- (void)didCallButtonTouch
+{
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"举报投诉"
+                                                             delegate:self
+                                                    cancelButtonTitle:@"取消"
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:@"020-34298158",@"800-830-2286", nil];
+    actionSheet.tag = 911;
+    [actionSheet showInView:self.view];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex != actionSheet.cancelButtonIndex)
+    {
+        if (buttonIndex == 0)
+        {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"tel://020-34298158"]];
+        }
+        if (buttonIndex == 1)
+        {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"tel://800-830-2286"]];
+        }
+    }
+}
+
 - (BOOL) connectedToNetwork
 {
     // Create zero addy
@@ -295,6 +424,7 @@
 	NSURLConnection *testConnection = [[NSURLConnection alloc] initWithRequest:testRequest delegate:self];
     return ((isReachable && !needsConnection) || nonWiFi) ? (testConnection ? YES : NO) : NO;
 }
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
